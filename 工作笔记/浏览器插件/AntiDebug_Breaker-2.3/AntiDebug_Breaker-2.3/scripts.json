@@ -1,0 +1,87 @@
+[
+  {
+    "id": "Bypass_Debugger",
+    "name": "Bypass Debugger",
+    "description": "绕过无限Debugger， 如绕不过去或报错请使用火狐忽略断点。",
+    "category": "antidebug"
+  },
+  {
+    "id": "hook_log",
+    "name": "hook log",
+    "description": "防止js重写console.log等方法",
+    "category": "antidebug"
+  },
+  {
+    "id": "hook_table",
+    "name": "Hook table",
+    "description": "绕过js检测运行时间差来实现反调试",
+    "category": "antidebug"
+  },
+  {
+    "id": "hook_clear",
+    "name": "hook clear",
+    "description": "禁止js清除控制台数据",
+    "category": "antidebug"
+  },
+  {
+    "id": "hook_close",
+    "name": "hook close",
+    "description": "重写close方法，以此来避免网站反调试关闭当前页面",
+    "category": "antidebug"
+  },
+  {
+    "id": "hook_history",
+    "name": "hook history",
+    "description": "避免网站反调试返回上一页或某个特定历史页面",
+    "category": "antidebug"
+  },
+  {
+    "id": "Fixed_window_size",
+    "name": "<div style=\"font-size: 0.9em;\">Fixed window size</div>",
+    "description": "固定浏览器高度宽度值以绕过前端检测用户是否打开控制台",
+    "category": "antidebug"
+  },
+  {
+    "id": "location_href",
+    "name": "页面跳转JS代码定位通杀方案",
+    "description": "阻断页面跳转，留在当前页面分析",
+    "category": "antidebug"
+  },
+  {
+    "id": "hook_Promise",
+    "name": "Hook Promise",
+    "description": "Hook Promise，将在控制台打印Promise的resolve参数，可快速定位异步回调位置。",
+    "category": "antidebug"
+  },
+  {
+    "id": "Hook_CryptoJS",
+    "name": "Hook CryptoJS",
+    "description": "Hook CryptoJS当中的所有 对称&哈希&HMAC算法，例如AES、DES、MD5、SHA等。如果未打印请自查目标站点是否清除了console.log或是否使用的是CryptoJS的加密算法，如果确认使用的是CryptoJS库进行的加密而无法打印可联系我。",
+    "category": "antidebug"
+  },
+  {
+    "id": "Hook_JSEncrypt",
+    "name": "Hook JSEncrypt RSA",
+    "description": "Hook JSEncrypt加密库中的RSA算法，加密时将在控制台打印公钥、原始数据、加密后的密文。解密时将在控制台打印私钥、原始数据、解密后的明文。如果未打印请自查目标站点是否清除了console.log或是否使用的是JSEncrypt的RSA算法，如果确认使用的是JSEncrypt库进行的RSA加密而无法打印可联系我。",
+    "category": "antidebug"
+  },
+  {
+    "id": "Get_Vue_0",
+    "name": "获取路由",
+    "description": "获取已加载的路由并显示在下方的表格中，注意未加载的路由不会被获取到，如果长时间未获取到可能是由于目标站点未使用vue router，也可能是因为目标站点未加载完毕。",
+    "category": "vue"
+  },
+  {
+    "id": "Get_Vue_1",
+    "name": "清除跳转",
+    "description": "本脚本将清除vue router的跳转方法，如果清除后依然会跳转，一方面可能是由于注入的脚本还未清除跳转方法，网站就调用了方法进行跳转，此时可以考虑手动替换js清除跳转方法。另一方面可能是由于在代码中调用的不是vue router的跳转方法，此时可以考虑开启反调试板块中的hook close或hook history脚本，再或者打开页面跳转JS代码定位通杀方案脚本，定位到跳转的函数并替换清除。",
+    "category": "vue",
+    "parentScript": "Get_Vue_0"
+  },
+  {
+    "id": "Clear_vue_Navigation_Guards",
+    "name": "清除路由守卫",
+    "description": "仅清除全局前置守卫(beforeEach)和全局解析守卫(beforeResolve)，如果清除后网站控制台显示报错，可能是由于在路由守卫中做了动态加载等其他操作，此时可以考虑关闭本脚本并亲自替换js逻辑实现绕过。",
+    "category": "vue"
+  }
+]
