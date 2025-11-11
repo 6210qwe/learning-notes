@@ -78,6 +78,7 @@ data/
 downloads/
 images/
 demo/
+大文件/
 # 备份文件
 *.bak
 *.backup
