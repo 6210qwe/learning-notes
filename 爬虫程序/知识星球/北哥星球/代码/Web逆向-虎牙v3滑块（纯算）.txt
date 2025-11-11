@@ -1,0 +1,669 @@
+import requests,time,base64,cv2,random
+from loguru import logger
+from PIL import Image
+import execjs,json,numpy as np
+from pathlib import Path
+import PIL,datetime
+from urllib.parse import quote
+from fake_useragent import UserAgent
+from Crypto.Cipher import AES
+import base64
+from loguru import logger
+
+headers = {
+    'authority': 'udbrtt.huya.com',
+    'accept': 'application/json, text/plain, */*',
+    'accept-language': 'zh-CN,zh;q=0.9',
+    'cache-control': 'no-cache',
+    'content-type': 'application/json',
+    'origin': 'https://aq.huya.com',
+    'pragma': 'no-cache',
+    'referer': 'https://aq.huya.com/',
+    'user-agent': UserAgent().random
+}
+
+phone = '1381176'+str(random.randint(1000,9999))
+# 获取滑块轨迹
+def guiji(distance):
+    distance = distance + 46
+    trackList = [
+        "46,209,1733304066446",
+        "46,210,1733304066811",
+        "47,210,1733304066847",
+        "49,210,1733304066858",
+        "51,210,1733304066871",
+        "53,211,1733304066881",
+        "55,211,1733304066887",
+        "57,211,1733304066898",
+        "59,212,1733304066903",
+        "60,212,1733304066914",
+        "62,213,1733304066925",
+        "63,213,1733304066927",
+        "65,214,1733304066937",
+        "65,214,1733304066943",
+        "66,214,1733304066967",
+        "67,214,1733304067575",
+        "67,214,1733304067591",
+        "68,214,1733304067631",
+        "69,214,1733304067715",
+        "69,214,1733304067747",
+        "70,214,1733304067783",
+        "70,215,1733304067799",
+        "71,215,1733304067815",
+        "72,215,1733304067839",
+        "73,215,1733304067891",
+        "73,215,1733304067901",
+        "74,215,1733304067915",
+        "74,216,1733304067926",
+        "75,216,1733304067959",
+        "76,216,1733304068007",
+        "77,216,1733304068043",
+        "77,216,1733304068063",
+        "78,216,1733304068074",
+        "79,216,1733304068135",
+        "80,216,1733304068147",
+        "81,216,1733304068159",
+        "81,216,1733304068169",
+        "82,216,1733304068175",
+        "83,217,1733304068191",
+        "84,217,1733304068201",
+        "85,217,1733304068207",
+        "85,217,1733304068219",
+        "86,217,1733304068231",
+        "87,217,1733304068250",
+        "88,217,1733304068260",
+        "89,218,1733304068287",
+        "89,218,1733304068311",
+        "90,218,1733304068327",
+        "91,218,1733304068516",
+        "92,218,1733304068535",
+        "93,218,1733304068551",
+        "93,218,1733304068562",
+        "94,218,1733304068567",
+        "96,218,1733304068578",
+        "97,218,1733304068583",
+        "98,218,1733304068593",
+        "99,218,1733304068599",
+        "100,218,1733304068610",
+        "101,218,1733304068623",
+        "101,218,1733304068633",
+        "102,218,1733304068655",
+        "104,219,1733304068666",
+        "105,219,1733304068687",
+        "105,219,1733304068719",
+        "106,219,1733304068759",
+        "107,219,1733304068863",
+        "108,219,1733304068873",
+        "110,220,1733304068879",
+        "113,220,1733304068890",
+        "115,220,1733304068895",
+        "116,220,1733304068906",
+        "119,220,1733304068911",
+        "120,220,1733304068921",
+        "121,220,1733304068927",
+        "122,220,1733304068937",
+        "123,220,1733304068943",
+        "124,220,1733304069207",
+        "125,220,1733304069219",
+        "129,220,1733304069223",
+        "133,220,1733304069233",
+        "135,220,1733304069244",
+        "140,220,1733304069249",
+        "142,220,1733304069260",
+        "144,220,1733304069264",
+        "146,220,1733304069274",
+        "148,220,1733304069279",
+        "149,220,1733304069651",
+        "150,220,1733304069679",
+        "151,220,1733304069690",
+        "153,221,1733304069695",
+        "155,221,1733304069706",
+        "156,221,1733304069711",
+        "157,221,1733304069721",
+        "157,222,1733304069727",
+        "159,222,1733304069863",
+        "160,222,1733304069873",
+        "161,222,1733304069879",
+        "165,222,1733304069889",
+        "169,222,1733304069895",
+        "170,222,1733304069906",
+        "173,222,1733304069911",
+        "176,222,1733304069921",
+        "178,222,1733304069927",
+        "180,222,1733304069937",
+        "181,222,1733304069943",
+        "183,222,1733304069954",
+        "184,222,1733304070239",
+        "185,222,1733304070275",
+        "186,222,1733304070291",
+        "187,222,1733304070302",
+        "188,222,1733304070317",
+        "189,222,1733304070328",
+        "189,222,1733304070332",
+        "189,222,1733304070342",
+        "190,222,1733304070355",
+        "191,222,1733304070366",
+        "192,222,1733304070387",
+        "193,222,1733304070399",
+        "194,222,1733304070411",
+        "195,222,1733304070422",
+        "197,222,1733304070444",
+        "199,222,1733304070454",
+        "200,222,1733304070460",
+        "201,222,1733304070487",
+        "201,222,1733304070511",
+        "202,222,1733304070521",
+        "203,222,1733304070535",
+        "204,222,1733304070546",
+        "205,222,1733304070551",
+        "205,222,1733304070562",
+        "206,222,1733304070567",
+        "207,222,1733304070584",
+        "208,222,1733304070601",
+        "209,222,1733304070663",
+        "209,222,1733304070703",
+        "210,222,1733304070716",
+        "213,222,1733304070719",
+        "214,222,1733304070729",
+        "216,222,1733304070735",
+        "218,223,1733304070745",
+        "220,223,1733304070751",
+        "221,223,1733304070761",
+        "223,223,1733304070767",
+        "224,223,1733304070778",
+        "225,223,1733304070799",
+        "225,223,1733304070823",
+        "226,223,1733304070975",
+        "227,223,1733304071095",
+        "229,223,1733304071106",
+        "230,224,1733304071111",
+        "232,224,1733304071122",
+        "234,224,1733304071127",
+        "236,225,1733304071138",
+        "238,225,1733304071143",
+        "240,225,1733304071154",
+        "241,226,1733304071159",
+        "241,226,1733304071191",
+        "242,226,1733304071443",
+        "243,226,1733304071454",
+        "245,226,1733304071459",
+        "246,226,1733304071470",
+        "248,226,1733304071475",
+        "249,226,1733304071486",
+        "250,226,1733304071491",
+        "251,226,1733304071502",
+        "251,227,1733304071507",
+        "252,227,1733304071539",
+        "253,227,1733304071799",
+        "254,227,1733304071809",
+        "255,228,1733304071815",
+        "257,228,1733304071825",
+        "258,229,1733304071831",
+        "259,229,1733304071841",
+        "260,229,1733304071847",
+        "261,229,1733304071857",
+        "261,229,1733304072095",
+        "262,229,1733304072115",
+        "263,229,1733304072125",
+        "265,230,1733304072131",
+        "266,230,1733304072141",
+        "267,230,1733304072159",
+        "268,230,1733304072169",
+        "269,230,1733304072419",
+        "269,231,1733304072431",
+        "270,231,1733304072442",
+        "272,231,1733304072447",
+        "273,231,1733304072458",
+        "275,231,1733304072471",
+        "276,231,1733304072487",
+        "277,232,1733304072503",
+        "277,232,1733304072514",
+        "278,232,1733304072527",
+        "278,233,1733304072539",
+        "279,233,1733304072543",
+        "280,233,1733304072843",
+        "281,233,1733304072853",
+        "281,234,1733304072855",
+        "282,234,1733304072871",
+        "283,234,1733304072881",
+        "284,234,1733304073263",
+        "285,234,1733304073274",
+        "287,234,1733304073278",
+        "289,234,1733304073289",
+        "290,234,1733304073294",
+        "291,234,1733304073603",
+        "292,234,1733304073667",
+        "293,234,1733304073678",
+        "294,234,1733304073682",
+        "296,234,1733304073693",
+        "297,234,1733304073699",
+        "298,234,1733304073710",
+        "300,235,1733304073723",
+        "301,235,1733304073735",
+        "302,235,1733304073843",
+        "303,236,1733304073854",
+        "304,236,1733304073867",
+        "305,236,1733304073877",
+        "305,236,1733304073890",
+        "306,236,1733304073900",
+        "307,236,1733304073910",
+        "309,236,1733304073935",
+        "309,236,1733304073946",
+        "310,236,1733304073959",
+        "311,236,1733304073970",
+        "312,237,1733304073991",
+        "313,237,1733304074007",
+        "313,237,1733304074019",
+        "314,237,1733304074055",
+        "315,238,1733304074066",
+        "316,238,1733304074079",
+        "317,238,1733304074089",
+        "318,238,1733304074110"
+    ]
+    trackLists = []
+    for track in trackList:
+        trackLists.append([int(i) for i in track.split(',')])
+
+
+    # 检查value是否在轨迹的x值中
+    for trajectory in trackLists:
+        if trajectory[0] == distance:
+            # 如果找到，截取从轨迹开始到该点的子数组
+            result =  [t for t in trackLists if t[0] <= distance]
+            results = []
+            for lis in result:
+                results.append(','.join([str(i) for i in lis]))
+            return results
+
+    # 如果value不在x值中，找到最接近value的x值
+    closest_x = None
+    min_diff = float('inf')
+    for trajectory in trackLists:
+        if abs(trajectory[0] - distance) < min_diff:
+            min_diff = abs(trajectory[0] - distance)
+            closest_x = trajectory[0]
+
+    # 截取从轨迹开始到最接近的x值的子数组
+    result = [t for t in trackLists if t[0] <= closest_x]
+    result[-1][0] = distance
+
+    results = []
+    for lis in result:
+        results.append(','.join([str(i) for i in lis]))
+    return results
+
+# 图片识别
+class ImageIdentify:
+    def imshow(self,img, winname='test', delay=0):
+        """cv2展示图片"""
+        cv2.imshow(winname, img)
+        cv2.waitKey(delay)
+        cv2.destroyAllWindows()
+
+
+    def pil_to_cv2(img):
+        """
+        pil转cv2图片
+        :param img: pil图像, <type 'PIL.JpegImagePlugin.JpegImageFile'>
+        :return: cv2图像, <type 'numpy.ndarray'>
+        """
+        img = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
+        return img
+
+
+    def bytes_to_cv2(self,img):
+        """
+        二进制图片转cv2
+        :param img: 二进制图片数据, <type 'bytes'>
+        :return: cv2图像, <type 'numpy.ndarray'>
+        """
+        # 将图片字节码bytes, 转换成一维的numpy数组到缓存中
+        img_buffer_np = np.frombuffer(img, dtype=np.uint8)
+        # 从指定的内存缓存中读取一维numpy数据, 并把数据转换(解码)成图像矩阵格式
+        img_np = cv2.imdecode(img_buffer_np, 1)
+        return img_np
+
+
+    def cv2_open(self,img, flag=None):
+        """
+        统一输出图片格式为cv2图像, <type 'numpy.ndarray'>
+        :param img: <type 'bytes'/'numpy.ndarray'/'str'/'Path'/'PIL.JpegImagePlugin.JpegImageFile'>
+        :param flag: 颜色空间转换类型, default: None
+            eg: cv2.COLOR_BGR2GRAY（灰度图）
+        :return: cv2图像, <numpy.ndarray>
+        """
+        if isinstance(img, bytes):
+            img = self.bytes_to_cv2(img)
+        elif isinstance(img, (str, Path)):
+            img = cv2.imread(str(img))
+        elif isinstance(img, np.ndarray):
+            img = img
+        elif isinstance(img, PIL.Image):
+            img = self.pil_to_cv2(img)
+        else:
+            raise ValueError(f'输入的图片类型无法解析: {type(img)}')
+        if flag is not None:
+            img = cv2.cvtColor(img, flag)
+        return img
+
+
+    def get_distance(self,bg, tp, im_show=False, save_path=None):
+        """
+        :param bg: 背景图路径或Path对象或图片二进制
+            eg: 'assets/bg.jpg'
+                Path('assets/bg.jpg')
+        :param tp: 缺口图路径或Path对象或图片二进制
+            eg: 'assets/tp.jpg'
+                Path('assets/tp.jpg')
+        :param im_show: 是否显示结果, <type 'bool'>; default: False
+        :param save_path: 保存路径, <type 'str'/'Path'>; default: None
+        :return: 缺口位置
+        """
+        # 读取图片
+        bg_img = self.cv2_open(bg)
+        tp_gray = self.cv2_open(tp, flag=cv2.COLOR_BGR2GRAY)
+
+        # 金字塔均值漂移
+        bg_shift = cv2.pyrMeanShiftFiltering(bg_img, 5, 50)
+
+        # 边缘检测
+        tp_gray = cv2.Canny(tp_gray, 255, 255)
+        bg_gray = cv2.Canny(bg_shift, 255, 255)
+
+        # 目标匹配
+        result = cv2.matchTemplate(bg_gray, tp_gray, cv2.TM_CCOEFF_NORMED)
+        # 解析匹配结果
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+
+        distance = max_loc[0]
+        if save_path or im_show:
+            # 需要绘制的方框高度和宽度
+            tp_height, tp_width = tp_gray.shape[:2]
+            # 矩形左上角点位置
+            x, y = max_loc
+            # 矩形右下角点位置
+            _x, _y = x + tp_width, y + tp_height
+            # 绘制矩形
+            bg_img = self.cv2_open(bg)
+            cv2.rectangle(bg_img, (x, y), (_x, _y), (0, 0, 255), 2)
+            # 保存缺口识别结果到背景图
+            if save_path:
+                save_path = Path(save_path).resolve()
+                save_path = save_path.parent / f"{save_path.stem}{save_path.suffix}"
+                save_path = save_path.__str__()
+                cv2.imwrite(save_path, bg_img)
+            # 显示缺口识别结果
+            if im_show:
+                self.imshow(bg_img)
+        return max_loc[0]
+
+# 还原底图
+def gen(arr,_img,_imgs):
+    # 创建一个新的背景图
+    new_img = Image.new('RGB', (390, 180))  # 宽400 高200
+
+    for index in range(len(arr)):
+        c = arr[index] * 26
+        # 从背景图中扣出相应的小图
+        l = _img.crop((c, 0, c + 26, 200))  # 图片剪切crop(x,y,x1,y1) 四个坐标
+        # 将扣出的小图 还原到正确的位置
+        new_x = index * 26
+        new_img.paste(l, (new_x, 0))
+    new_img.paste(_img.crop((390, 0, 390, 180)), (390, 0))  # 最后的边框 26*15=384
+    new_img.save(_imgs)
+
+# 解密-js执行得到图片数组
+def get_seq(segment,key,js):
+    encrypt_seq = execjs.compile('window = global;'+'\n\n\n' + js).call('UdbCipher.decrypt',segment,key)
+    seqList = json.loads(base64.b64decode(encrypt_seq).decode('utf-8'))['ord']
+    return seqList
+
+# 加密-js执行得到act参数
+def get_act(b64_encode_url_data,huyapk,js):
+    encrypt_seq = execjs.compile('window = global;'+'\n\n\n' + js).call('UdbCipher.encrypt',b64_encode_url_data,huyapk)
+    return encrypt_seq
+
+def AesEncrypt(text, key):
+    cipher = AES.new(key.encode('utf-8'), AES.MODE_ECB)
+    pad = 16 - len(text) % 16
+    text = text + pad * chr(pad)
+    encrypted_text = cipher.encrypt(text.encode('utf-8'))
+    return base64.b64encode(encrypted_text).decode('utf-8')
+
+def guid(e=0):
+    t = datetime.datetime.utcnow()
+    if e and e == 1:
+        start_of_day = datetime.datetime(t.year, t.month, t.day, 0, 0, 0, 0)
+        return int((t - start_of_day).total_seconds() * 1000)
+    elif e and e == 2:
+        return int(t.timestamp() * 1000)
+    else:
+        import random
+        cstr = "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx"
+        result = ""
+        for cs in cstr:
+            if cs == 'x' or cs == 'y':
+                rand = int(16 * random.random())
+                if cs == 'x':
+                    rand = hex(rand)[2:]
+                else:
+                    rand = hex(3 & rand | 8)[2:]
+                result += str(rand)
+            else:
+                result += cs
+        return result
+
+# 获取csid
+def get_csid():
+    cstr = "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx"
+    result = 'csid_'
+    for cs in cstr:
+        if cs == 'x' or cs == 'y':
+            rand = (lambda c: int(16 * c) if c > 0 else 0)(random.random())
+            if cs == 'x':
+                rand = hex(rand)[2:]
+            else:
+                rand = hex(3 & rand | 8)[2:]
+            result += str(rand)
+        else:
+            result += cs
+    return result
+
+
+def get_token():
+    url = "https://df.huya.com/web/df/token"
+    data = {
+        "encryptVersion": "1.0.1",
+        "fingerprintVersion": "1.2.23"
+    }
+    data = json.dumps(data, separators=(',', ':'))
+    response = requests.post(url, headers=headers, data=data).json()
+
+    encryptSeed = response['data']['encryptSeed']
+    token = response['data']['token']
+    logger.success(f"encryptSeed: {encryptSeed}")
+    logger.success(f"token: {token}")
+    return encryptSeed, token
+
+
+# 获得sdid
+def get_collect():
+    encryptSeed, token = get_token()
+    # key = encryptSeed[0:16].split('').reverse().join('')
+    collectEndTime = str(int(time.time() * 1000))
+    collectStartTime = str(int(time.time() * 1000) - random.randint(1000,1010))
+    
+    dataStr = '{"webrtcIps":[],"deepChromeDriver":[],"oldChromeDriver":[],"zeus_info":"Lr155ffx8B2fOd3CaAJk4gBNjY4Ih9016C7p458G/AVSCIe96WYx8w0bgYzli8LLmlbe/2lZNBylofNozQkLqdr8hZ3kp9ht+Fr+dAEFrM8sR26kekbF/jIaJtvAvDKuc2JeDSCBhsd9Q+O6n5clnfjOBEs/vSAqlBX9ERM5MnWF9rJHPA2auBjAfucI70guStST/InRnc/NfQMxsgvBxH2/QY49yGNYSHqnmnrHeKB/lCmPtnyAlIn4zy3DnYsfPTlly3+oouoBN41Ni/V4jOFL2+rMWNTZO6sJemzCkyL004SA59c03r5om9y2Lz61fLf5C6p5rBZk0AuJE2nCuoXPLMExigCFq/jxsEeYUeM=","version":"1.2.29","appId":5002,"collectStartTime":'+collectStartTime+',"userAgent":"Mozilla/5.0 (Windows NT 10.0; JiSu) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.3.1.7 Safari/537.36","platform":"Win32","productSub":"20030107","languages":[["zh-CN"]],"plugins":["PDF Viewer","Chrome PDF Viewer","Chromium PDF Viewer","Microsoft Edge PDF Viewer","WebKit built-in PDF"],"mimTypes":["{\"type\":\"application/pdf\",\"suffixes\":\"pdf\",\"description\":\"Portable Document Format\"}","{\"type\":\"text/pdf\",\"suffixes\":\"pdf\",\"description\":\"Portable Document Format\"}"],"timeZone":"Asia/Shanghai","deviceMemory":8,"hardwareConcurrency":8,"indexedDb":true,"sessionStorage":true,"localStorage":true,"performance":"{\"timeOrigin\":1749088416554.7,\"timing\":{\"connectStart\":1749088416583,\"navigationStart\":1749088416554,\"secureConnectionStart\":1749088416588,\"fetchStart\":1749088416562,\"domContentLoadedEventStart\":1749088418174,\"responseStart\":1749088416612,\"domInteractive\":1749088418155,\"domainLookupEnd\":1749088416583,\"responseEnd\":1749088416617,\"redirectStart\":0,\"requestStart\":1749088416601,\"unloadEventEnd\":1749088416640,\"unloadEventStart\":1749088416639,\"domLoading\":1749088416694,\"domComplete\":0,\"domainLookupStart\":1749088416583,\"loadEventStart\":0,\"domContentLoadedEventEnd\":1749088418176,\"loadEventEnd\":0,\"redirectEnd\":0,\"connectEnd\":1749088416601},\"navigation\":{\"type\":1,\"redirectCount\":0}}","performanceMemory":"{\"jsHeapSizeLimit\":2172649472}","openDatabase":true,"userAgentData":"{\"architecture\":\"x86\",\"bitness\":\"64\",\"brands\":[{\"brand\":\"Not=A?Brand\",\"version\":\"99\"},{\"brand\":\"Chromium\",\"version\":\"118\"}],\"fullVersionList\":[{\"brand\":\"Not=A?Brand\",\"version\":\"99.0.0.0\"},{\"brand\":\"Chromium\",\"version\":\"118.3.1.7\"}],\"mobile\":false,\"model\":\"\",\"platform\":\"Windows\",\"platformVersion\":\"10.0.0\",\"uaFullVersion\":\"118.3.1.7\",\"wow64\":false}","screenResolution":[1536,864],"screenLeftAndTop":[0,0],"colorDepth":24,"innerHeight":715,"innerWidth":150,"outerHeight":824,"outerWidth":1536,"curl":"https://www.huya.com/","refer":"","webDriver":"false","newWebDriver":"false","render":"ANGLE (Intel, Intel(R) UHD Graphics (0x00008A56) Direct3D11 vs_5_0 ps_5_0, D3D11)","vender":"Google Inc.","navigatorNotificationPermission":"prompt","notificationPermission":"default","isWindowChrome":true,"isIframeChrome":true,"fonts":["Agency FB","Calibri","Century","Century Gothic","Franklin Gothic","Haettenschweiler","Leelawadee","Lucida Bright","Lucida Sans","MS Outlook","MS Reference Specialty","MS UI Gothic","MT Extra","Marlett","Microsoft Uighur","Monotype Corsiva","Pristina","Segoe UI Light","SimHei"],"adBlock":false,"canvas":"a7d7c23fef3c48deecb6c1e7b8d7b86d","canvasBackup":"true-8bf4fce9eeb643647cd1cfd33f8c8c30-a93e6c6cd78aa0d656253d7a836df0c6","audio":124.04347527516074,"touchSupport":{"maxTouchPoints":0,"touchEvent":false,"touchStart":false},"isOpenConsole":false,"isSupportWebAssembly":"1","localSdid":"csid_ed965549d4c64c92996e5d42cb783e9e","math":"{\"acos\":1.4473588658278522,\"acosh\":709.889355822726,\"acoshPf\":355.291251501643,\"asin\":0.12343746096704435,\"asinh\":0.881373587019543,\"asinhPf\":0.8813735870195429,\"atanh\":0.5493061443340548,\"atanhPf\":0.5493061443340548,\"atan\":0.4636476090008061,\"sin\":0.8178819121159085,\"sinh\":1.1752011936438014,\"sinhPf\":2.534342107873324,\"cos\":-0.8390715290095377,\"cosh\":1.5430806348152437,\"coshPf\":1.5430806348152437,\"tan\":-1.4214488238747245,\"tanh\":0.7615941559557649,\"tanhPf\":0.7615941559557649,\"exp\":2.718281828459045,\"expm1\":1.718281828459045,\"expm1Pf\":1.718281828459045,\"log1p\":2.3978952727983707,\"log1pPf\":2.3978952727983707,\"powPI\":1.9275814160560204e-50}","mathMd5":"9dbaa13f3aa4c6615b11b67aa805b1dd","colorGamut":"srgb","fontPrrferences":"{\"default\":161.296875,\"apple\":161.296875,\"serif\":136,\"sans\":161.296875,\"mono\":119,\"min\":10.09375,\"system\":161.296875}","fontPrrferencesMd5":"e967d81848ca6abf7cae13f67f8c5b09","mediaDeviceInfo":"audio&audioinput:&videoinput:&audiooutput:","synthesisLanguage":"languages","synthesisLanguageMd5":"f3e334d42863e8250c7d03efefbfd387","hdr":"false","pdfviewEnabled":"true","screenExtended":"false","localSessionId":"fa0fd36e9f985fb19e8b112a3485007c","geolocationInfo":"no permission","navigatorPrototype":["vendorSub","productSub","vendor","maxTouchPoints","scheduling","userActivation","doNotTrack","geolocation","connection","plugins","mimeTypes","pdfViewerEnabled","webkitTemporaryStorage","webkitPersistentStorage","hardwareConcurrency","cookieEnabled","appCodeName","appName","appVersion","platform","product","userAgent","language","languages","onLine","webdriver","getGamepads","javaEnabled","sendBeacon","vibrate","constructor","bluetooth","clipboard","credentials","keyboard","managed","mediaDevices","storage","serviceWorker","virtualKeyboard","wakeLock","deviceMemory","ink","hid","locks","gpu","mediaCapabilities","mediaSession","permissions","presentation","usb","xr","serial","windowControlsOverlay","userAgentData","canShare","share","clearAppBadge","getBattery","getUserMedia","requestMIDIAccess","requestMediaKeySystemAccess","setAppBadge","webkitGetUserMedia","getInstalledRelatedApps","registerProtocolHandler","unregisterProtocolHandler","constructor","__defineGetter__","__defineSetter__","hasOwnProperty","__lookupGetter__","__lookupSetter__","isPrototypeOf","propertyIsEnumerable","toString","valueOf","__proto__","toLocaleString"],"automationTools":[],"collectEndTime":'+collectEndTime+',"browserId":"a1ea33329acc8bda42a0c5cc8e19b243","chromeDriver":[]}'
+    encryptWebDeviceFeature = AesEncrypt(dataStr, encryptSeed)
+    
+    url = "https://df.huya.com/web/df/collect"
+    data = {
+        "encryptWebDeviceFeature": encryptWebDeviceFeature,
+        "token": token
+    }
+    data = json.dumps(data, separators=(',', ':'))
+    response = requests.post(url, headers=headers, data=data).json()
+
+    sdid = response['data']['sdid']
+    hdid = response['data']['hdid']
+
+    logger.success(f"sdid: {sdid}")
+    logger.success(f"hdid: {hdid}")
+    return sdid, hdid
+
+def get_smsCode():
+    sdid, hdid = get_collect()
+    url = "https://udblgn.huya.com/web/v2/smsCode"
+    data = {
+        "uri": "60027",
+        "version": "2.6",
+        "context": "WB-572aa5e9d7754a038fc78b5626bad4fe-CB3F40FF45B00001EA36130013001E5A-0a7d9d0abad654686402901f911ff2b7",
+        "appId": "5002",
+        "appSign": "1ce3bf682483d03f146f58232ec10635",
+        "authId": "",
+        "sdid": sdid,
+        "lcid": "2052",
+        "byPass": "3",
+        "requestId": f"{guid()}",
+        "data": {
+            "phone": "086" + phone,
+            "behavior": "%7B%22furl%22%3A%22https%3A%2F%2Fwww.huya.com%2F%22%2C%22curl%22%3A%22https%3A%2F%2Fwww.huya.com%2F%22%2C%22user_action%22%3A%5B%7B%22id%22%3A%2212%22%2C%22x%22%3A554%2C%22y%22%3A56%2C%22d%22%3A13306%2C%22time%22%3A1750390487311%7D%2C%7B%22id%22%3A%2217%22%2C%22d%22%3A14557%2C%22time%22%3A1750390488562%7D%2C%7B%22id%22%3A%2217%22%2C%22d%22%3A21624%2C%22time%22%3A1750390495629%7D%2C%7B%22id%22%3A%2218%22%2C%22x%22%3A618%2C%22y%22%3A182%2C%22d%22%3A21791%2C%22time%22%3A1750390495796%7D%5D%7D",
+            "page": "https%3A%2F%2Fwww.huya.com%2F"
+        }
+    }
+    data = json.dumps(data, separators=(',', ':'))
+    response = requests.post(url, headers=headers, data=data).json()
+
+    sessionData = response['data']['sessionData']
+    urlParamMap = response['data']['strategys'][0]['data'].split('?')[-1].split('&')
+    urlParamMap = { parm.split('=')[0]: parm.split('=')[1] for parm in urlParamMap}
+
+    url = "https://aq.huya.com/p/safe_auth/pt_auth.html"
+    params = {
+        "t_": "261188"
+    }
+    response = requests.get(url, headers=headers, params=params)
+
+    logger.success(f"sessionData: {sessionData}")
+    logger.success(f"urlParamMap: {urlParamMap}")
+    return sessionData, urlParamMap, sdid
+
+# 得到配置参数
+def get_config3():
+    sessionData, urlParamMap, sdid = get_smsCode()
+    nowTime = int(round(time.time() * 1000))
+    json_data = {
+        'appId': '5002',
+        'data': {
+            'urlParamMap': urlParamMap,
+            'wupData': '',
+            'page': f'https://aq.huya.com/p/udb_login.html?v={nowTime}',
+            'behavior': '%5B%5D',
+            'info': sdid,
+            'cTuIndex': 0,
+        },
+    }
+
+    config3 = requests.post('https://udbrtt.huya.com/auth/client/config3', headers=headers, json=json_data).json()
+
+    gurl = config3['data']['gurl']
+    vurl = config3['data']['vurl']
+    key = config3['data']['key']
+    js = config3['data']['js']
+
+    logger.success(f'滑块图片接口网址：{gurl}')
+    logger.success(f'验证接口网址：{vurl}')
+    logger.success(f'加密key：{key}')
+    # logger.success(f'加密js：{js}')
+
+    return sessionData, urlParamMap, gurl, vurl, key, js, sdid
+
+# 获取滑块图片
+def get_captcha():
+    sessionData, urlParamMap, gurl, vurl, key, js, sdid = get_config3()
+    nowTime = int(round(time.time() * 1000))
+    json_data = {
+        'appId': '5002',
+        'data': {
+            'urlParamMap': urlParamMap,
+            'wupData': '',
+            'page': f'https://aq.huya.com/p/udb_login.html?v={nowTime}',
+            'behavior': '%5B%5D',
+            'info': sdid,
+            'ver': 5,
+        },
+    }
+    captcha = requests.post(url=gurl, headers=headers, json=json_data).json()
+
+    code = captcha['data']['code']
+    bgimg = base64.b64decode(captcha['data']['dtuStr'].replace('data:image/jpg;base64,', ''))
+    with open('bg.jpg', 'wb') as f:
+        f.write(bgimg)
+    ftimg = base64.b64decode(captcha['data']['puzzleStr'].replace('data:image/png;base64,', ''))
+    huyapk = captcha['data']['huyapk']
+    segment = captcha['data']['segment']
+    
+    # 解密还原滑块图片
+    segment = get_seq(segment,key,js)
+
+    logger.success(f'获取code参数：{code}')
+    logger.success(f'获取huyapk参数：{huyapk}')
+    logger.success(f'获取segment参数：{segment}')
+
+    # 还原滑块图片
+    gen(segment,Image.open('bg.jpg'), 'bgs.jpg')
+
+    # 获取滑动距离
+    with open('bgs.jpg', 'rb') as f:
+        bgimg = f.read()
+    
+    genc = ImageIdentify().get_distance(bg=bgimg, tp=ftimg, save_path='distinguish.jpg')
+    logger.success(f'获取滑动距离：{genc}')
+
+    return urlParamMap, code, huyapk, genc, vurl, js, sdid
+
+# 验证滑块
+def get_verify():
+    urlParamMap, code, huyapk, genc, vurl, js, sdid = get_captcha()
+    nowTime = int(round(time.time() * 1000))
+    params = {
+        "lock": "true"
+    }
+
+    # 加密act
+    guijic = list(guiji(int(genc)))
+    travel = ';'.join(guijic)
+    json_data = {
+        'point': genc,
+        'travel':travel,
+        'code':code,
+        'sceneType':'0',
+        'endTime': random.randint(3080, 4100)
+    }
+    encode_url_data = quote(json.dumps(json_data, separators=(',', ':')),safe=':/?&=;,')
+    b64_encode_url_data = base64.b64encode(encode_url_data.encode('utf-8')).decode('utf-8')
+    
+    # 获取act
+    act = get_act(b64_encode_url_data,huyapk,js)
+
+    data = {
+        "appId": "5002",
+        "data": {
+            "urlParamMap": urlParamMap,
+            "wupData": "",
+            "page": f"https://aq.huya.com/p/udb_login.html?v={nowTime}",
+            "behavior": "%5B%7B%22action%22%3A%22mousedown%22%2C%22id%22%3A%22%22%2C%22txt%22%3A%22%22%2C%22clientX%22%3A62%2C%22clientY%22%3A208%2C%22clientWidth%22%3A350%2C%22clientHeight%22%3A268%2C%22isTrusted%22%3Atrue%2C%22timeStamp%22%3A973959%2C%22nowTime%22%3A1733303166928%7D%5D",
+            "info": sdid,
+            "act": act,
+            "ver": 5
+        }
+    }
+    data = json.dumps(data, separators=(',', ':'))
+
+    verify = requests.post(url=vurl, headers=headers, params=params, data=data).json()
+
+    logger.success(f'虎牙直播v3滑块验证：{verify}')
+
+if __name__ == '__main__':
+    for i in range(1):
+        get_verify()

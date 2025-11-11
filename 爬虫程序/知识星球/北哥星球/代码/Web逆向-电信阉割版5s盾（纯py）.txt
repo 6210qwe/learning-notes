@@ -1,0 +1,94 @@
+from curl_cffi import requests
+from lxml import etree
+import re,json,time
+from Crypto.Cipher import AES
+import base64,hashlib
+
+def aesEncrypt(text,key=None,iv=None):
+    key = key[:16] if key and len(key) > 16 else key
+    iv = iv[:16] if iv and len(iv) > 16 else iv
+    cipher = AES.new(key.encode('utf-8'), AES.MODE_CBC, iv.encode('utf-8'))
+    pad = 16 - len(text) % 16
+    text = text + pad * chr(pad)
+    encrypted_text = cipher.encrypt(text.encode('utf-8'))
+    return base64.b64encode(encrypted_text).decode('utf-8')
+
+headers = {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "Accept-Language": "zh-CN,zh;q=0.9",
+    "Cache-Control": "no-cache",
+    "Connection": "keep-alive",
+    "Pragma": "no-cache",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Upgrade-Insecure-Requests": "1",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; JiSu) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.3.1.7 Safari/537.36",
+}
+url = "https://ah.chinamine-safety.gov.cn/fuwu/hd_zcjd/"
+response = requests.get(url, headers=headers)
+
+# print(response.text)
+tree = etree.HTML(response.text)
+scripts = tree.xpath('//script/@src')
+
+
+xyjgnaksf_Obj = requests.get('https://ah.chinamine-safety.gov.cn'+scripts[0],headers=headers).text
+xyjgnaksf = re.findall(r'var xyjgnaksf = (.*?);',xyjgnaksf_Obj)[0]
+
+xyjgnaksf_json = json.loads(xyjgnaksf)
+# cookie1
+cookies = {}
+type = 'query'   #env
+key = xyjgnaksf_json['a6607e9a31_5d01d7']
+now_time = int(time.time())
+cookies['CTCT_GLOBAL_TIME_DELTA'] = str(int(now_time - int(xyjgnaksf_json['af8_dc12a_a162678'])))
+
+# cookie2
+now_time = str(int(time.time()) - int(cookies['CTCT_GLOBAL_TIME_DELTA']))
+CT_6eadf26c = str(now_time) + '{"md":0,"mv":0,"mp":0,"kc":0}' + str(now_time)[-2:]
+if type == 'env':
+    key = xyjgnaksf_json['e09b_cc0baf4c431']
+CT_6eadf26c = aesEncrypt(CT_6eadf26c,key[4:],key[4:])
+cookies['CT_6eadf26c'] = CT_6eadf26c
+
+
+# cookie3
+CT_f7ba0eb8 = '[{"key":"user_agent","value":"Mozilla/5.0 (Windows NT 10.0; JiSu) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.3.1.7 Safari/537.36"},{"key":"language","value":"zh-CN"},{"key":"pixel_ratio","value":1.25},{"key":"hardware_concurrency","value":8},{"key":"resolution","value":[1536,864]},{"key":"available_resolution","value":[824,1536]},{"key":"timezone_offset","value":-480},{"key":"session_storage","value":false},{"key":"local_storage","value":false},{"key":"indexed_db","value":false},{"key":"open_database","value":false},{"key":"navigator_platform","value":"Win32"},{"key":"navigator_oscpu"},{"key":"do_not_track","value":null},{"key":"touch_support","value":10},{"key":"navigator_plugin_0","value":"PDF Viewer"},{"key":"navigator_plugin_1","value":"Chrome PDF Viewer"},{"key":"navigator_plugin_2","value":"Chromium PDF Viewer"},{"key":"navigator_plugin_3","value":"Microsoft Edge PDF Viewer"},{"key":"navigator_plugin_4","value":"WebKit built-in PDF"},{"key":"cookie_enabled","value":true},{"key":"canvas","value":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAAoCAYAAAC7HLUcAAAAAXNSR0IArs4c6QAABaVJREFUeF7tWk2oVVUU/hxJJAYi+AKL0JCiIJGCoKhQIbFBUKFkRmD0sCIrKpoURDiJikwhxUgI++GJRhGGQYQFRTUqKCqIBiX0IjEUHTgyvo3rsO4++/y8fa/Pm/s7k/fuPWfvvda31rf+zp1zZhJnoEsICIEkAnNEEHmGEGhGQASRdwiBFgREELmHEBBB5ANCIA8BZZA83LSqEAREkEIMLTXzEBBB8nDTqkIQEEEKMbTUzENABMnDTasKQUAEKcTQUjMPAREkDzetKgQBEaQQQ0vNPAREkDzctKoQBESQQgwtNfMQEEHycNOqQhCoCHIKc7EOk/gE19ZUP4TtuB0/DQ3J35iP2/AUtmHfUPvZPr9goibTWvyIfdiNp3FPuLcT7w4t97neYCa48Nm7sBlv4D1chyM10bZjJR7H+oHvr8I0DuNVLMKJpCpm+y34vNUun+IarMGWsMdCnMRneC0pw7nGazb3rxEkBukHLMZqPIl3sGcopx6lUl1OMsqzxm2vJt2NZEtwNASIi3G6Et1Isxlf1gKGD4xtgZB+sB6TmMLuQAqS5QmsayXeuGGXI08nQbhpDEacbSxq0ygP475a5KaBfsaleAEfD2SQOBN4A7ad0YcgXg6e/w2W4DguqjLk65gCgwGv+Kyt+Ah7cWPlDG2y0HFewpqwz/u4AdThavwV9OW1C7eEv975KNti/IttWBXu0ekexYaQWZfjz5AhiOlzuDPctwzA/5mBLXPann0ykAW653Gw0tuIw7N+x8LWzB7btW/WyXHKcVrTiyDeIa/EP6EUY8llDubBayITn6XxrcS6Gb8N7GOAc98H8VXrGTkEYdlhDkUZN2JTVSJQ/j+wIEReXtTvO1wR7nfp2+Z4RsI4C/O8w1hWRV/v4IaRZQKT53IcC9E/pTv3IymJsSczyyBm/hdxRyjJvsAy7MSt1bkHsAK0gxGvqfT1tjGbc00qGI6Tc49Cll4E8dGChzLy+DTujTaBEwNZgs7xCDbgA+waMAQ/NKVoOnCfM+IexNfacQbhniZz7JBxTe8JNI1LWmWhHr70MHz8ebEzxY6VIoh3VmJh+53E3IEehGs34QHswduYh9OB3J5MDEi82INMY35NVt7rykBN2cIqg/9Dn5dLlhkT5FcsqjWBPNw3bbFzstyw6GcZhPvETmRKpBpNfwZJ2Naoxg7pHYxloHeICRyvCGxNrK+3GXXjptfL0kQQ09nrZPrGA4RhCMI9P8TygG+sZ4xDV//SlUHi/lQEOWtdDywdpsmxzRmszDqIHXgM94bUz9LJO0IXQdrOyCmxmjJIH4K0yRI3r5ZBzgdBfKlltvDf+WzuJ1p9M4gvq1ViuZzk+4rvcVnn9MIA34hvQ1PM8ooG8YboKrHaJiSjJIg1xX5sGpdYbbI0EWS2SizLIK9gf61vi3Fq6hm6CJIig5r0swSJG0wDxupcPpYa+dEYnOD4CZc3RNykeyOYsZvO4LOjKrEYFfs06U2ypOp6KxFtKBCTaJQ9iE3R3sRevIWbquxOjNiPcDrF/mMK1w806L4m70MQjXkbXhSmXgjF49nUiyh7qeTHqbEh4n1SZLJG3J8xygxCgqTGvKnMl5KlKYPQIXl9jaXhbzzm5XfW3M6kB7FROoMPseXE7yHcj2dxKLyfsMBEu72MA3gGd+Mo5g0EqrhhTREk9V3RLwpzu/wLcV1Trd5X11Sz3HdtznN9X9qN40vfHH1nc03xv8VKRcph5/uzTRAbDHDalnpbbuXrfqwo4uchoyRQ8QSxHsp+Y8TPTU7WF/jzQRA/tbK3915eX+r21UPPASKIvEAItCAggsg9hIAIIh8QAnkIKIPk4aZVhSAgghRiaKmZh4AIkoebVhWCgAhSiKGlZh4CIkgeblpVCAIiSCGGlpp5CIggebhpVSEIiCCFGFpq5iHwH7/RMwXCS+NlAAAAAElFTkSuQmCC"},{"key":"svg","value":{"vendor":"Google Inc. (Intel)","renderer":"ANGLE (Intel, Intel(R) UHD Graphics (0x00008A56) Direct3D11 vs_5_0 ps_5_0, D3D11)"}},{"key":"font","value":["Arial","Times New Roman","Helvetica","Courier New"]},{"key":"audio","value":48000}]'
+CT_f7ba0eb8 = hashlib.md5(CT_f7ba0eb8.encode()).hexdigest()
+cookies['CT_f7ba0eb8'] = CT_f7ba0eb8
+
+# cookie4
+now_time1 = str(int(time.time()) - int(cookies['CTCT_GLOBAL_TIME_DELTA']))
+CT_e6tzab00 = now_time1 + "envCTCT" + str(now_time1)[-2:]
+CT_e6tzab00 = aesEncrypt(CT_e6tzab00,xyjgnaksf_json['e09b_cc0baf4c431'][4:],xyjgnaksf_json['e09b_cc0baf4c431'][4:])
+cookies['CT_e6tzab00'] = CT_e6tzab00
+
+# cookie5
+now_time2 = str(int(time.time()) - int(cookies['CTCT_GLOBAL_TIME_DELTA']))
+CT_rqu7ab01 = now_time2 + "queryCTCT" + str(now_time2)[-2:]
+CT_rqu7ab01 = aesEncrypt(CT_rqu7ab01,xyjgnaksf_json['a6607e9a31_5d01d7'][4:],xyjgnaksf_json['a6607e9a31_5d01d7'][4:])
+cookies['CT_rqu7ab01'] = CT_rqu7ab01
+print(cookies)
+
+
+url = "https://ah.chinamine-safety.gov.cn/fuwu/hd_zcjd/"
+headers = {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "Accept-Language": "zh-CN,zh;q=0.9",
+    "Cache-Control": "no-cache",
+    "Connection": "keep-alive",
+    "Pragma": "no-cache",
+    "Referer": "https://ah.chinamine-safety.gov.cn/fuwu/hd_zcjd/",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "same-origin",
+    "Upgrade-Insecure-Requests": "1",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; JiSu) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.3.1.7 Safari/537.36",
+    "sec-ch-ua": "\"Not=A?Brand\";v=\"99\", \"Chromium\";v=\"118\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\""
+}
+response = requests.get(url, headers=headers,cookies=cookies)
+print(response.status_code)

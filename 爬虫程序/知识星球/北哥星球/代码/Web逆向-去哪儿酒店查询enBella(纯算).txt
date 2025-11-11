@@ -1,0 +1,157 @@
+// https://touch.qunar.com/  去哪儿酒店查询
+
+const CryptoJs = require('crypto-js');
+
+// arg1 = "1683616182042##aa61064fe5832cf99c7129850219a38ebc406ad0";
+
+// js页面  window.june_v 参数
+june_v = '1683616182042'
+data = {
+    "city": "北京",
+    "cityUrl": "beijing_city",
+    "checkInDate": "2025-06-20",
+    "checkOutDate": "2025-06-21",
+    "sort": "0",
+    "notLogin": "true",
+    "keywords": "",
+    "location": "",
+    "bd_source": "",
+    "extra": {},
+    "locationAreaFilterSelected": [],
+    "page": 3,
+    "needSec": true,
+    "isHos": false,
+    "cParam": null,
+    "signParam": {}
+}
+// window.nShirley  首页返回
+shirley = '4fa1bf59d48c4a20bd5f4eb2b216fdf2'
+
+// 生成随机数
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    // 生成一个介于 min 和 max 之间（包含 min 和 max）的随机整数
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
+}
+// 生成随机字符1
+function generateRandomString(length) {
+    const characters = 'QWERTYUIOPASDFGHJKLZXCVBNM1234567890';
+    let result = '';
+    const charactersLength = characters.length;
+    // 循环指定次数，每次随机选取一个字符添加到结果字符串中
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+// 生成随机字符2
+function generateRandomString2(length) {
+    const characters = '-_zyxwvutsrqponmlkjihgfedcba9876543210ZYXWVUTSRQPONMLKJIHGFEDCBA';
+    let result = '';
+    const charactersLength = characters.length;
+    // 循环指定次数，每次随机选取一个字符添加到结果字符串中
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+// 加密算法
+function convertString(randstr1) {
+    const keyList = ['B', '6', 'F', '1', 'Y', 'r', 'N', 'm', '+', 'O', 'A', '=', 's', 'w', 'n', '8', 'x', 'b', 'e', 'L', 'l', 'z', 'Q', 'p', '5', 'M', '0', '2', 'S', 'U', 'H', 't', '/', 'd', 'o', 'g', 'c', 'y', 'f', 'j', '-', '9', 'k', 'P', 'K', 'u', 'E', 'X', '7', 'V', 'W', 'a', 'q', 'J', 'i', '3', 'C', 'I', 'G', 'D', 'R', 'h', 'T', 'v', '4'];
+
+    function quote(str) {
+        return encodeURIComponent(str);
+    }
+
+    // 转编码
+    let quoteRandstr = quote(randstr1).replace(/\//g, '%2F');
+    // 有余数则加空格
+    while (quoteRandstr.length % 3!== 0) {
+        quoteRandstr += ' ';
+    }
+    // 算法  --- 取 charCode 值 进行二进制   再补 0
+    let quoteRandstrList = [];
+    for (let i = 0; i < quoteRandstr.length; i++) {
+        const charCode = quoteRandstr.charCodeAt(i);
+        const binary = charCode.toString(2).padStart(8, '0');
+        quoteRandstrList.push(binary);
+    }
+    // 拆成分个为一小组
+    let quoteRandstrList3 = [];
+    for (let i = 0; i < quoteRandstrList.length; i += 3) {
+        quoteRandstrList3.push(quoteRandstrList.slice(i, i + 3));
+    }
+    let result1 = '';
+    // 循环每次取 6 个 -- 再取反 --- 十进制补 0  --- 再取二进制
+    for (let lis of quoteRandstrList3) {
+        let lisStrs = lis.join('').split('');
+        // 每次取 6 个
+        let lisStrs6 = [];
+        for (let i = 0; i < lisStrs.length; i += 6) {
+            lisStrs6.push(lisStrs.slice(i, i + 6).join(''));
+        }
+        let lisStrs6fan = [];
+        // 取反
+        for (let v of lisStrs6) {
+            let fan = '';
+            for (let c of v) {
+                fan += c === '1'? '0' : '1';
+            }
+            lisStrs6fan.push(fan);
+        }
+        // 十进制补 0
+        lisStrs6fan = lisStrs6fan.map(ky => ky.padStart(8, '0'));
+        // 取二进制
+        let randStr2 = '';
+        for (let bytek of lisStrs6fan) {
+            const num = parseInt(bytek, 2);
+            randStr2 += keyList[num];
+        }
+        result1 += randStr2;
+    }
+    return result1;
+}
+
+// SHA-1 算法
+function generateHmacSignature(signstr,key) {
+    // 创建 HMAC 实例，使用 SHA-1 算法
+    const hmac = CryptoJs.HmacSHA1(signstr, key);
+    // 返回二进制数据
+    return hmac.toString(CryptoJs.enc.Hex);
+}
+
+data_bParam = JSON.stringify(data);
+data_keyArray = Object.keys(data);
+
+// 数据配置加密
+data_infoconfig = {
+    "referer": "user.qunar.com/",
+    "piccolo": getRandomInt(1000,9999)+"##"+generateRandomString(16)+"##"+new Date().getTime(),
+    "shirley": shirley,
+    "title": "馆旅店【去哪儿酒店】",
+    "keywords": ",北京去哪儿酒店预订",
+    "description": "【去哪儿酒店】帮您预订北京酒店，去哪儿酒",
+    "host": "touch.qunar.com",
+    "scriptSrc": [
+        "qant.qunar.com/s",
+        "qimgs.qunarzz.co"
+    ]
+}
+
+// 第三段加密
+arg3 = convertString(JSON.stringify(data_infoconfig));
+
+// 第四段随机数
+arg4 = generateRandomString2(21);
+
+// 第二段加密
+key = "h8fsaK3wqe+ioMvs"
+arg2_str = data_bParam + arg3 + arg4 + JSON.stringify(data_keyArray);
+arg2 = generateHmacSignature(arg2_str, key);
+
+// enBella
+enBella = june_v + '##' + arg2 + '##' + arg3 + '##' + arg4 + "##" + data_keyArray;
+console.log(enBella)

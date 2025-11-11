@@ -1,0 +1,190 @@
+const CryptoJs = require('crypto-js');
+const pako = require('pako');
+
+CryptoJs.enc.toString_ = function toString(t) {
+    var r = !0;
+    var e = t["words"]
+        , x = t["sigBytes"]
+        , a = r ? "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_" : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    t["clamp"]();
+    for (var i = [], o = 0; o < x; o += 3)
+        for (var c = (e[o >>> 2] >>> 24 - o % 4 * 8 & 255) << 16 | (e[o + 1 >>> 2] >>> 24 - (o + 1) % 4 * 8 & 255) << 8 | e[o + 2 >>> 2] >>> 24 - (o + 2) % 4 * 8 & 255, u = 0; u < 4 && o + .75 * u < x; u++)
+            i["push"](a['charAt'](c >>> 6 * (3 - u) & 63));
+    var s = a['charAt'](64);
+    if (s)
+        for (; i['length'] % 4; )
+            i["push"](s);
+    return i['join']("")
+}
+aes_encrypt = function (data, key, iv) {
+    key = CryptoJs.enc.Utf8.parse(key);
+    iv = CryptoJs.enc.Utf8.parse(iv);
+    var encrypted = CryptoJs.AES.encrypt(data, key, {
+        iv: iv,
+        mode: CryptoJs.mode.CBC,
+        padding: CryptoJs.pad.Pkcs7
+    });
+    return CryptoJs.enc.toString_(encrypted.ciphertext);
+}
+aes_encrypt_Ecb = function (data, key) {
+    key = CryptoJs.enc.Utf8.parse(key);
+    var encrypted = CryptoJs.AES.encrypt(data, key, {
+        mode: CryptoJs.mode.ECB,
+        padding: CryptoJs.pad.Pkcs7
+    });
+    return encrypted.ciphertext;
+}
+
+// armorToken 分析
+function getArmorToken() {
+    var getReportUrl_metricCount = 0
+    var version = "3.7.0"
+    var armorUuid = '202507241624456a76b46007eb5ce6e220192e5c2e3bed0021ee10d42aa52e00'
+    var userAgent = "Mozilla/5.0 (Windows NT 10.0; JiSu) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.3.1.7 Safari/537.36"
+    var now_time = new Date().getTime()
+    get8LRandomStr = function () {
+        return 'xxxxxxxx'['replace'](/[xy]/g, (function (t) {
+            var n = 16 * Math["random"]() | 0;
+            return ("x" == t ? n : 3 & n | 8)['toString'](16)
+        }
+        ))
+    }();
+
+    armorToken_list = [getReportUrl_metricCount, version, armorUuid, userAgent, now_time, get8LRandomStr, '-'].join("^@^")
+    armorToken_list_data = [armorToken_list, CryptoJs.MD5(armorToken_list).toString()["slice"](-6)].join("^@^")
+
+    armorToken_key = "Yp22&mqMv#3t28Zh"
+    armorToken_iv = ''
+    armorToken_aes = aes_encrypt('0^@^3.7.0^@^202507241624456a76b46007eb5ce6e220192e5c2e3bed0021ee10d42aa52e00^@^Mozilla/5.0 (Windows NT 10.0; JiSu) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.3.1.7 Safari/537.36^@^1753348423638^@^c1c291e7^@^-^@^695836', armorToken_key, armorToken_iv)
+    _time = new Date().getTime()
+    armorToken = ["S0", version, armorToken_aes, _time].join("_");
+    return armorToken;
+}
+console.log('ArmorToken:',getArmorToken())
+
+function getAnti_in() {
+    var getReportUrl_metricCount = 0;
+    var version = "1.9.1";
+    function Nx(t, n) {
+        return 64 === t ? 64 : 63 === t ? n : t >= n ? t + 1 : t
+    }
+    function Fx(t, n) {
+        var e = t["words"]
+          , x = t["sigBytes"]
+          , i = "BcFhf0ULG58KZOCDEMRvlN_IqQnPXSJysAetkpi-3Hjr7zuaVWm1xd2g9T6bY4wo=";
+        t["clamp"]();
+        for (var a = [], o = Math["floor"](64 * Math["random"]()), u = 0; u < x; u += 3)
+            for (var c = (e[u >>> 2] >>> 24 - u % 4 * 8 & 255) << 16 | (e[u + 1 >>> 2] >>> 24 - (u + 1) % 4 * 8 & 255) << 8 | e[u + 2 >>> 2] >>> 24 - (u + 2) % 4 * 8 & 255, s = 0; s < 4 && u + .75 * s < x; s++) {
+                var f = c >>> 6 * (3 - s) & 63;
+                a['push'](i['charAt'](n(f, o)))
+            }
+        var v = i['charAt'](64);
+        if (v)
+            for (; a['length'] % 4; )
+                a['push'](v);
+        return a['join']("")['replace'](/=/g, "") + i[o]
+    }
+    var zhiw = {
+        "a1": "1.9.1",
+        "a2": 1753349756314,
+        "a8": [],
+        "a9": [],
+        "a10": [],
+        "a11": [],
+        "a12": 0,
+        "a13": 0,
+        "a14": 280238,
+        "a15": "Mozilla/5.0 (Windows NT 10.0; JiSu) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.3.1.7 Safari/537.36",
+        "a16": [
+            1536,
+            864,
+            1536,
+            824,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1536,
+            824,
+            244,
+            747
+        ],
+        "a17": [
+            "Win32",
+            "Google Inc.",
+            "Gecko",
+            "20030107",
+            "1.25",
+            "0",
+            "446f72",
+            "134773"
+        ],
+        "a18": [
+            0,
+            1,
+            5,
+            -480,
+            8,
+            8,
+            10,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0
+        ],
+        "a19": [
+            "Asia/Shanghai",
+            "zh-CN"
+        ],
+        "a21": "SHEIN",
+        "a22": 1,
+        "a24": "",
+        "a25": 2,
+        "a27": 7,
+        "a20": "",
+        "a29": [],
+        "a23": [],
+        "a31": [],
+        "a32": -1,
+        "a33": -1
+    };
+    zhiw_stringify = JSON.stringify(zhiw);
+    zhiw_stringify_md5_ = CryptoJs.MD5(zhiw_stringify).toString()["slice"](-6);
+    zhiw_key = "Yp22&mqMv#3t28Zh"
+
+    const encoder = new TextEncoder();
+    const utf8Bytes = encoder.encode('{"a1":"1.9.1","a2":1753359912965,"a8":[],"a9":[],"a10":[],"a11":[],"a12":0,"a13":0,"a14":12804,"a15":"Mozilla/5.0 (Windows NT 10.0; JiSu) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.3.1.7 Safari/537.36","a16":[1536,864,1536,824,0,0,0,0,0,0,1536,824,244,747],"a17":["Win32","Google Inc.","Gecko","20030107","1.25","0","446f72","134773"],"a18":[0,1,5,-480,8,8,10,0,1,1,0,1,1,0,1,1,1,0,0,1,1,0,1,1,1,1,1,0,0],"a19":["Asia/Shanghai","zh-CN"],"a21":"SHEIN","a22":1,"a24":"","a25":2,"a27":1,"a20":"","a29":[],"a23":[],"a31":[],"a32":-1,"a33":-1}');
+    const compressedBytes = pako.deflate(utf8Bytes);  // 默认生成 zlib 头 
+    const zhiw_stringify_uint8Array = new Uint8Array(compressedBytes);
+    zhiw_data = function (t) {
+        for (var r = "", e = 0; e < t["length"]; e++) {
+            var x = (255 & t[e])["toString"](16);
+            r += x = 1 === x["length"] ? "0" + x : x
+        }
+        return CryptoJs.enc.Hex.parse(r)
+    }(zhiw_stringify_uint8Array);
+    zhiw_data_encrypt = aes_encrypt_Ecb(zhiw_data, zhiw_key);
+    zhiw_data_encrypt_string = Fx(zhiw_data_encrypt, Nx)
+    return [getReportUrl_metricCount,version,zhiw_stringify_md5_,zhiw_data_encrypt_string].join('_')
+}
+console.log('Anti-in:',getAnti_in())
