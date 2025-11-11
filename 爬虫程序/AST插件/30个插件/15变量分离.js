@@ -1,0 +1,79 @@
+插件更新:变量分离。
+
+/******************************
+处理前:
+var a = 123,b = 456;
+let c = 789,d = 120;
+处理后:
+var a = 123;
+var b = 456;
+let c = 789;
+let d = 120;
+******************************/
+
+const DeclaratorToDeclaration =
+{
+    VariableDeclaration(path) {
+        let { parentPath, node } = path;
+        if (parentPath.isFor()) {
+            return;
+        }
+        let { declarations, kind } = node;
+
+        if (declarations.length == 1) {
+            return;
+        }
+
+        let newNodes = [];
+
+        for (const varNode of declarations) {
+            let newDeclartionNode = types.VariableDeclaration(kind, [varNode]);
+            newNodes.push(newDeclartionNode);
+        }
+
+        path.replaceWithMultiple(newNodes);
+
+    },
+}
+
+traverse(ast, DeclaratorToDeclaration);
+
+
+
+#插件更新  合并被拆分为多个的变量定义。
+
+/*******************************************************
+处理前:
+var a = 123;
+var b = 456;
+var c = 789;
+var d = 120;
+
+处理后:
+
+var a = 123,b = 456,c = 789,d = 120;
+
+*******************************************************/
+
+const comBinVarDefine =
+{
+	VariableDeclaration(path)
+	{
+		let allNextSiblings = path.getAllNextSiblings();
+
+		for (let nextSibling of allNextSiblings)
+		{
+			if (!nextSibling.isVariableDeclaration())
+			{
+				break;
+			}
+
+			path.node.declarations.push(...nextSibling.node.declarations);
+
+			nextSibling.remove();
+		}
+
+	},
+}
+
+traverse(ast, comBinVarDefine);

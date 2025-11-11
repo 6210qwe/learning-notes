@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>反混淆练习</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #getUserAgentButton {
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #getUserAgentButton:hover {
+      background-color: #2980b9;
+    }
+
+    #userAgentText {
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 390px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="userAgentText" placeholder="请输入" value="123456">
+  <button id="getUserAgentButton">标准SHA1+盐(浏览器环境)</button>
+  
+  <script>
+
+typeof window === "undefined" && Object.assign(globalThis, {
+  "exports": exports,
+  "require": require,
+  "module": module,
+  "__filename": __filename,
+  "__dirname": __dirname
+});
+(function (p, p2, p3, p4, p5, p6) {
+  f(67, p);
+  function f(p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50, p51, p52, p53, p54, p55, p56, p57, p58, p59, p60, p61) {
+    function f2(p62) {
+      let vP10 = p10;
+      for (let vLN1 = 1; vLN1 < p62; ++vLN1) {
+        vP10 = vP10.__proto__;
+      }
+      return vP10;
+    }
+    function f3() {
+      if (p11) {
+        return p11;
+      }
+      let vO = {};
+      Object.defineProperties(vO, {
+        "ﱣﹱ": {
+          get() {
+            return p13;
+          },
+          set(p63) {
+            p13 = p63;
+          }
+        },
+        "ءﹱ": {
+          get() {
+            return p14;
+          },
+          set(p64) {
+            p14 = p64;
+          }
+        },
+        "ﱡיּ": {
+          get() {
+            return p15;
+          },
+          set(p65) {
+            p15 = p65;
+          }
+        },
+        "ﹱﱟ": {
+          get() {
+            return p16;
+          },
+          set(p66) {
+            p16 = p66;
+          }
+        },
+        "ﹱﱡ": {
+          get() {
+            return p17;
+          },
+          set(p67) {
+            p17 = p67;
+          }
+        },
+        "ﱞﱣ": {
+          get() {
+            return p18;
+          },
+          set(p68) {
+            p18 = p68;
+          }
+        },
+        "ﱡ": {
+          get() {
+            return p19;
+          },
+          set(p69) {
+            p19 = p69;
+          }
+        },
+        "ﱣ": {
+          get() {
+            return p20;
+          },
+          set(p70) {
+            p20 = p70;
+          }
+        },
+        "ﱢﹰ": {
+          get() {
+            return p21;
+          },
+          set(p71) {
+            p21 = p71;
+          }
+        },
+        "ࢭﹱ": {
+          get() {
+            return p22;
+          },
+          set(p72) {
+            p22 = p72;
+          }
+        },
+        "יּﱞ": {
+          get() {
+            return p23;
+          },
+          set(p73) {
+            p23 = p73;
+          }
+        },
+        "ﹰﱟ": {
+          get() {
+            return p24;
+          },
+          set(p74) {
+            p24 = p74;
+          }
+        },
+        "ﱡﹱ": {
+          get() {
+            return p25;
+          },
+          set(p75) {
+            p25 = p75;
+          }
+        },
+        "ءࢭ": {
+          get() {
+            return p26;
+          },
+          set(p76) {
+            p26 = p76;
+          }
+        },
+        "ءﱠ": {
+          get() {
+            return p27;
+          },
+          set(p77) {
+            p27 = p77;
+          }
+        },
+        "ﱠﹰ": {
+          get() {
+            return p28;
+          },
+          set(p78) {
+            p28 = p78;
+          }
+        },
+        "ﱡﱢ": {
+          get() {
+            return p29;
+          },
+          set(p79) {
+            p29 = p79;
+          }
+        },
+        "ﹱיּ": {
+          get() {
+            return p30;
+          },
+          set(p80) {
+            p30 = p80;
+          }
+        },
+        "ﱣﱠ": {
+          get() {
+            return p31;
+          },
+          set(p81) {
+            p31 = p81;
+          }
+        },
+        "ﹲﱟ": {
+          get() {
+            return p32;
+          },
+          set(p82) {
+            p32 = p82;
+          }
+        },
+        "ﱡࢭ": {
+          get() {
+            return p33;
+          },
+          set(p83) {
+            p33 = p83;
+          }
+        },
+        "ﱞﱠ": {
+          get() {
+            return p34;
+          },
+          set(p84) {
+            p34 = p84;
+          }
+        },
+        "ﱣࢭ": {
+          get() {
+            return p35;
+          },
+          set(p85) {
+            p35 = p85;
+          }
+        }
+      });
+      vO.__proto__ = p10;
+      p11 = vO;
+      return vO;
+    }
+    while (1) {
+      switch (p7) {
+        case 0:
+          p14 = 0;
+          p7 = 277;
+          break;
+        case 1:
+          p15[p42] = p43;
+          p7 = 279;
+          break;
+        case 2:
+          p40 += "";
+          p7 = 495;
+          break;
+        case 3:
+          f2(2).ﹱﱡ[p44] = 78;
+          p7 = 183;
+          break;
+        case 4:
+          p16 = p46;
+          p7 = 414;
+          break;
+        case 5:
+          p53 = p16 >> 6;
+          p7 = 296;
+          break;
+        case 6:
+          return p47;
+          break;
+        case 7:
+          p41 = p24["buffer"];
+          p7 = 500;
+          break;
+        case 8:
+          p54 = p10.ﱡﱢ[3];
+          p7 = 150;
+          break;
+        case 9:
+          p17 = p6;
+          p7 = 0;
+          break;
+        case 10:
+          p55[0] = p56;
+          p7 = 30;
+          break;
+        case 11:
+          p56 = p16 & 63;
+          p7 = 203;
+          break;
+        case 12:
+          p40 = "@";
+          p7 = 401;
+          break;
+        case 13:
+          p48 = p["Function"]["prototype"];
+          p7 = 21;
+          break;
+        case 14:
+          p43 = p4(p42, p22)(p44);
+          p7 = 535;
+          break;
+        case 15:
+          p43 = p42["apply"];
+          p7 = 204;
+          break;
+        case 16:
+          p41 = p40["apply"];
+          p7 = 76;
+          break;
+        case 17:
+          p45 = p27(p46, 5);
+          p7 = 640;
+          break;
+        case 18:
+          p10.ﹱﱟ = p46;
+          p7 = 47;
+          break;
+        case 19:
+          p56 = p16 >> 12;
+          p7 = 42;
+          break;
+        case 20:
+          p55 = 224 + p57;
+          p7 = 349;
+          break;
+        case 21:
+          p49 = p48["call"];
+          p7 = 578;
+          break;
+        case 22:
+          p56 = p54 + p59;
+          p7 = 79;
+          break;
+        case 23:
+          p52 = p47 + p53;
+          p7 = 56;
+          break;
+        case 24:
+          p17 = p49;
+          p7 = 360;
+          break;
+        case 25:
+          p52 = p13 << p14;
+          p7 = 36;
+          break;
+        case 26:
+          p7 = p51 ? 600 : 496;
+          break;
+        case 27:
+          p58 = p25[p57];
+          p7 = 202;
+          break;
+        case 28:
+          p53 = p16 >> 6;
+          p7 = 320;
+          break;
+        case 29:
+          return p12.יּﹱ = p3;
+          break;
+        case 30:
+          p60 = p16 >> 12;
+          p7 = 572;
+          break;
+        case 31:
+          p46 = p50;
+          p7 = 620;
+          break;
+        case 32:
+          p49 = p14;
+          p7 = 66;
+          break;
+        case 33:
+          p46 = p29[0];
+          p7 = 17;
+          break;
+        case 34:
+          p42 = p4(p41, p["console"])("补环境需要过document.all检测喔");
+          p7 = 287;
+          break;
+        case 35:
+          p42 = p10.ﹱﱡ === p6;
+          p7 = 207;
+          break;
+        case 36:
+          p54 = p13;
+          p7 = 511;
+          break;
+        case 37:
+          p60 = p21 - 16;
+          p7 = 209;
+          break;
+        case 38:
+          p40 = p15["call"];
+          p7 = 502;
+          break;
+        case 39:
+          p17 = p6;
+          p7 = 497;
+          break;
+        case 40:
+          p42 = p41 << 3;
+          p7 = 318;
+          break;
+        case 41:
+          p40 = p10.ﱞﱣ();
+          p7 = 282;
+          break;
+        case 42:
+          p57 = p56 & 15;
+          p7 = 20;
+          break;
+        case 43:
+          p16 = p6;
+          p7 = 9;
+          break;
+        case 44:
+          p47 = p46 * 8;
+          p7 = 257;
+          break;
+        case 45:
+          return p15;
+          break;
+        case 46:
+          p7 = 99;
+          break;
+        case 47:
+          p45 = p10.ءﹱ;
+          p7 = 410;
+          break;
+        case 48:
+          p13 = function (...ﹲיּ) {
+            return f(196, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 253;
+          break;
+        case 49:
+          p46 = 79;
+          p7 = 18;
+          break;
+        case 50:
+          p50 = p48 & p51;
+          p7 = 210;
+          break;
+        case 51:
+          p52[2] = p53;
+          p7 = 424;
+          break;
+        case 52:
+          p47 = p16 < 2048;
+          p7 = 182;
+          break;
+        case 53:
+          p20 = 0;
+          p7 = 86;
+          break;
+        case 54:
+          return;
+          break;
+        case 55:
+          p48 = p10.ﱡﱢ[1];
+          p7 = 483;
+          break;
+        case 56:
+          p55 = p25[p21];
+          p7 = 375;
+          break;
+        case 57:
+          p58 = p57 & 7;
+          p7 = 519;
+          break;
+        case 58:
+          p40 = p40 - p45;
+          p7 = 576;
+          break;
+        case 59:
+          p7 = 621;
+          break;
+        case 60:
+          p56 = p4(p55, p13)(p14);
+          p7 = 314;
+          break;
+        case 61:
+          return p53;
+          break;
+        case 62:
+          ++p10.ءﹱ;
+          p7 = 3;
+          break;
+        case 63:
+          p51[1] = p55;
+          p7 = 328;
+          break;
+        case 64:
+          p7 = p45 ? 355 : 52;
+          break;
+        case 65:
+          p41 = p13["length"];
+          p7 = 297;
+          break;
+        case 66:
+          ++p14;
+          p7 = 277;
+          break;
+        case 67:
+          p36 = function (...ﹲיּ) {
+            return f(289, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 262;
+          break;
+        case 68:
+          p15 = p40;
+          p7 = 43;
+          break;
+        case 69:
+          p21 = function (...ﹲיּ) {
+            return f(484, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 229;
+          break;
+        case 70:
+          p41[0] = p42;
+          p7 = 554;
+          break;
+        case 71:
+          p7 = 338;
+          break;
+        case 72:
+          p53 = p52 | p54;
+          p7 = 61;
+          break;
+        case 73:
+          p50 = p26[p49];
+          p7 = 266;
+          break;
+        case 74:
+          p53 = p15["push"];
+          p7 = 499;
+          break;
+        case 75:
+          p44 = "@";
+          p7 = 607;
+          break;
+        case 76:
+          p43 = [];
+          p7 = 235;
+          break;
+        case 77:
+          if (p45) {
+            p7 = 513;
+          } else {
+            p7 = 49;
+          }
+          break;
+        case 78:
+          p7 = 277;
+          break;
+        case 79:
+          p60 = p56 | 0;
+          p7 = 226;
+          break;
+        case 80:
+          p10.ﹱﱡ[p40] = p16;
+          p7 = 265;
+          break;
+        case 81:
+          p43 = p16[p32];
+          p7 = 394;
+          break;
+        case 82:
+          p41 = p40["map"];
+          p7 = 602;
+          break;
+        case 83:
+          p40 = p40 < p41;
+          p7 = 185;
+          break;
+        case 84:
+          ++p21;
+          p7 = 377;
+          break;
+        case 85:
+          p40 = p40 < p41;
+          p7 = 642;
+          break;
+        case 86:
+          p40 = p20;
+          p7 = 263;
+          break;
+        case 87:
+          p46 = p10.ﱡﱢ[1];
+          p7 = 492;
+          break;
+        case 88:
+          p44 = p20 << 2;
+          p7 = 14;
+          break;
+        case 89:
+          p32 = 0;
+          p7 = 458;
+          break;
+        case 90:
+          ++p14;
+          p7 = 525;
+          break;
+        case 91:
+          p39 = p14["getElementById"];
+          p7 = 605;
+          break;
+        case 92:
+          p45 = p44 - 30;
+          p7 = 452;
+          break;
+        case 93:
+          p39 = function (...ﹲיּ) {
+            return f(440, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 551;
+          break;
+        case 94:
+          p56 = -271733879;
+          p7 = 294;
+          break;
+        case 95:
+          p40 = [];
+          p7 = 238;
+          break;
+        case 96:
+          p7 = p49 ? 412 : 248;
+          break;
+        case 97:
+          p7 = 455;
+          break;
+        case 98:
+          p46 = p32;
+          p7 = 599;
+          break;
+        case 99:
+          p40 = p32;
+          p7 = 569;
+          break;
+        case 100:
+          p7 = p46 ? 113 : 102;
+          break;
+        case 101:
+          p45 = p21 < 16;
+          p7 = 561;
+          break;
+        case 102:
+          p46 = p32;
+          p7 = 118;
+          break;
+        case 103:
+          p7 = p48 ? 413 : 418;
+          break;
+        case 104:
+          p40 = p14;
+          p7 = 365;
+          break;
+        case 105:
+          p7 = 348;
+          break;
+        case 106:
+          p7 = 281;
+          break;
+        case 107:
+          p40 = [];
+          p7 = 539;
+          break;
+        case 108:
+          p51 = "";
+          p7 = 281;
+          break;
+        case 109:
+          p43 = p32;
+          p7 = 593;
+          break;
+        case 110:
+          p46 = p["console"]["log"];
+          p7 = 464;
+          break;
+        case 111:
+          p40 = p20 < 5;
+          p7 = 451;
+          break;
+        case 112:
+          p7 = p44 ? 110 : 645;
+          break;
+        case 113:
+          p14 = 1;
+          p7 = 549;
+          break;
+        case 114:
+          p43 += "";
+          p7 = 565;
+          break;
+        case 115:
+          p10.ﱡיּ["value"] = p44;
+          p7 = 465;
+          break;
+        case 116:
+          p57 = p56 & p58;
+          p7 = 268;
+          break;
+        case 117:
+          p15[p40] = p42;
+          p7 = 453;
+          break;
+        case 118:
+          ++p32;
+          p7 = 168;
+          break;
+        case 119:
+          p7 = 18;
+          break;
+        case 120:
+          return p12.יּﹱ = p3;
+          break;
+        case 121:
+          p44 = p10.ءﹱ;
+          p7 = 62;
+          break;
+        case 122:
+          p50 = p34 === 1;
+          p7 = 129;
+          break;
+        case 123:
+          p46 = p34 < 5;
+          p7 = 611;
+          break;
+        case 124:
+          p13 = p42;
+          p7 = 148;
+          break;
+        case 125:
+          let vLN12 = 12;
+          try {
+            const vO2 = {
+              "יּﹱ": p2
+            };
+            const vF = f(p7 + 356, p8, p9, f3(), p6, vO2);
+            if (vO2.יּﹱ) {
+              return vF;
+            }
+            if (vO2.ءﱞ !== p6) {
+              vLN12 = vO2.ءﱞ;
+              if (vO2.ﱢﹱ > 1) {
+                p12.ءﱞ = vLN12;
+                p12.ﱢﹱ = --vO2.ﱢﹱ;
+                return p12.יּﹱ = p3;
+              }
+            }
+          } catch (e) {
+            const vO3 = {
+              "יּﹱ": p2
+            };
+            const vF2 = f(241, p8, p9, f3(), p6, vO3, e);
+            if (vO3.יּﹱ) {
+              return vF2;
+            }
+            if (vO3.ءﱞ !== p6) {
+              vLN12 = vO3.ءﱞ;
+              if (vO3.ﱢﹱ > 1) {
+                p12.ءﱞ = vLN12;
+                p12.ﱢﹱ = --vO3.ﱢﹱ;
+                return p12.יּﹱ = p3;
+              }
+            }
+          } finally {
+            const vO4 = {
+              "יּﹱ": p2
+            };
+            const vF3 = f(120, p8, p9, f3(), p6, vO4);
+            if (vO4.יּﹱ) {
+              return vF3;
+            }
+            if (vO4.ءﱞ !== p6) {
+              vLN12 = vO4.ءﱞ;
+              if (vO4.ﱢﹱ > 1) {
+                p12.ءﱞ = vLN12;
+                p12.ﱢﹱ = --vO4.ﱢﹱ;
+                return p12.יּﹱ = p3;
+              }
+            }
+          }
+          p7 = 12;
+          break;
+        case 126:
+          p44 += 6;
+          p7 = 493;
+          break;
+        case 127:
+          p48 = p20 + p21;
+          p7 = 407;
+          break;
+        case 128:
+          p41 = new p["Uint32Array"](p29);
+          p7 = 172;
+          break;
+        case 129:
+          p48 = p50;
+          p7 = 103;
+          break;
+        case 130:
+          ++p10.ءﹱ;
+          p7 = 446;
+          break;
+        case 131:
+          p7 = 111;
+          break;
+        case 132:
+          p7 = p40 ? 340 : 324;
+          break;
+        case 133:
+          p49 = p33 === 1;
+          p7 = 190;
+          break;
+        case 134:
+          p43 = p29["slice"];
+          p7 = 302;
+          break;
+        case 135:
+          p41[0] = "click";
+          p7 = 415;
+          break;
+        case 136:
+          p52[0] = 1518500249;
+          p7 = 517;
+          break;
+        case 137:
+          p32 = 0;
+          p7 = 99;
+          break;
+        case 138:
+          p50 = p47["length"];
+          p7 = 369;
+          break;
+        case 139:
+          f2(2).ﹱﱡ[p44] = 36;
+          p7 = 371;
+          break;
+        case 140:
+          p41 = p40["toString"];
+          p7 = 149;
+          break;
+        case 141:
+          p50 = p34 === 3;
+          p7 = 184;
+          break;
+        case 142:
+          p49 = p33 === 1;
+          p7 = 441;
+          break;
+        case 143:
+          p39 = p16["addEventListener"];
+          p7 = 429;
+          break;
+        case 144:
+          p7 = 413;
+          break;
+        case 145:
+          p44[0] = p45;
+          p7 = 468;
+          break;
+        case 146:
+          p34 = 0;
+          p7 = 374;
+          break;
+        case 147:
+          p46 = p35;
+          p7 = 583;
+          break;
+        case 148:
+          p42 = p13;
+          p7 = 370;
+          break;
+        case 149:
+          p15 = p41;
+          p7 = 177;
+          break;
+        case 150:
+          p53 = p52 & p54;
+          p7 = 213;
+          break;
+        case 151:
+          p41[1] = p44;
+          p7 = 218;
+          break;
+        case 152:
+          ++p33;
+          p7 = 338;
+          break;
+        case 153:
+          p43 = p15[p34];
+          p7 = 615;
+          break;
+        case 154:
+          p41 = p40 + 8;
+          p7 = 462;
+          break;
+        case 155:
+          p7 = 377;
+          break;
+        case 156:
+          p45 = p29[p21];
+          p7 = 436;
+          break;
+        case 157:
+          p50 = function (...ﹲיּ) {
+            return f(25, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 621;
+          break;
+        case 158:
+          p7 = 556;
+          break;
+        case 159:
+          p46 = p15["call"];
+          p7 = 591;
+          break;
+        case 160:
+          p10.ﹱﱡ[p40] = p16;
+          p7 = 467;
+          break;
+        case 161:
+          p40 = p4(p39, p16)(...p41);
+          p7 = 321;
+          break;
+        case 162:
+          p43 = 128 << p44;
+          p7 = 596;
+          break;
+        case 163:
+          p46 = p4(p45, p29)();
+          p7 = 541;
+          break;
+        case 164:
+          p13 = p44;
+          p7 = 479;
+          break;
+        case 165:
+          return p53;
+          break;
+        case 166:
+          f2(2).ﹱﱡ[p45] = 89;
+          p7 = 601;
+          break;
+        case 167:
+          p16 = p44;
+          p7 = 543;
+          break;
+        case 168:
+          p44 = p32 < 1200;
+          p7 = 588;
+          break;
+        case 169:
+          p46 = p45 - p32;
+          p7 = 217;
+          break;
+        case 170:
+          p51 = p45 + 65;
+          p7 = 421;
+          break;
+        case 171:
+          p53 = p51 + p55;
+          p7 = 564;
+          break;
+        case 172:
+          p42 = p41["buffer"];
+          p7 = 622;
+          break;
+        case 173:
+          p44 = p10.ﱞﱣ;
+          p7 = 212;
+          break;
+        case 174:
+          p39 = p14["getElementById"];
+          p7 = 387;
+          break;
+        case 175:
+          p7 = p48 ? 309 : 546;
+          break;
+        case 176:
+          p59 = p28[p58];
+          p7 = 22;
+          break;
+        case 177:
+          p40 = p15["call"];
+          p7 = 317;
+          break;
+        case 178:
+          p40 = [];
+          p7 = 68;
+          break;
+        case 179:
+          return p49;
+          break;
+        case 180:
+          p7 = p44 ? 614 : 413;
+          break;
+        case 181:
+          p41 = p40 >> 2;
+          p7 = 224;
+          break;
+        case 182:
+          p7 = p47 ? 327 : 322;
+          break;
+        case 183:
+          p42 = p10.ﹱﱡ == p6;
+          p7 = 475;
+          break;
+        case 184:
+          p48 = p50;
+          p7 = 175;
+          break;
+        case 185:
+          p7 = p40 ? 153 : 291;
+          break;
+        case 186:
+          p45 = p19["length"];
+          p7 = 604;
+          break;
+        case 187:
+          p53 = -1894007588;
+          p7 = 51;
+          break;
+        case 188:
+          p7 = p49 ? 280 : 192;
+          break;
+        case 189:
+          p46 = p45 + p47;
+          p7 = 427;
+          break;
+        case 190:
+          p48 = p49;
+          p7 = 442;
+          break;
+        case 191:
+          p33 = 0;
+          p7 = 338;
+          break;
+        case 192:
+          p7 = p48 ? 455 : 514;
+          break;
+        case 193:
+          p7 = 278;
+          break;
+        case 194:
+          p37 = function (...ﹲיּ) {
+            return f(48, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 278;
+          break;
+        case 195:
+          p7 = 262;
+          break;
+        case 196:
+          p14 = p6;
+          p7 = 178;
+          break;
+        case 197:
+          p43 = p13["charCodeAt"];
+          p7 = 275;
+          break;
+        case 198:
+          p46 = p10.ﱡﱢ[2];
+          p7 = 575;
+          break;
+        case 199:
+          p40 = p["String"]["fromCharCode"];
+          p7 = 16;
+          break;
+        case 200:
+          p47 = p46["buffer"];
+          p7 = 397;
+          break;
+        case 201:
+          ++p10.ﱞﱣ;
+          p7 = 530;
+          break;
+        case 202:
+          p56 = p53 ^ p58;
+          p7 = 37;
+          break;
+        case 203:
+          p55 = 128 + p56;
+          p7 = 356;
+          break;
+        case 204:
+          p41 = p4(p40, p15)(p43);
+          p7 = 396;
+          break;
+        case 205:
+          p7 = 474;
+          break;
+        case 206:
+          p53 = p29[4];
+          p7 = 23;
+          break;
+        case 207:
+          p7 = p42 ? 121 : 183;
+          break;
+        case 208:
+          p53 = p51 ^ p54;
+          p7 = 165;
+          break;
+        case 209:
+          p61 = p25[p60];
+          p7 = 423;
+          break;
+        case 210:
+          p47 = p45 | p50;
+          p7 = 6;
+          break;
+        case 211:
+          p26 = p41;
+          p7 = 157;
+          break;
+        case 212:
+          ++p10.ﱞﱣ;
+          p7 = 623;
+          break;
+        case 213:
+          p51 = p49 | p53;
+          p7 = 232;
+          break;
+        case 214:
+          p55[1] = p59;
+          p7 = 351;
+          break;
+        case 215:
+          p50 = p13 < 16;
+          p7 = 428;
+          break;
+        case 216:
+          p55[2] = p5;
+          p7 = 476;
+          break;
+        case 217:
+          p47 = p46 + 30;
+          p7 = 580;
+          break;
+        case 218:
+          p46 = function (...ﹲיּ) {
+            return f(55, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 568;
+          break;
+        case 219:
+          p40 = p19["length"];
+          p7 = 181;
+          break;
+        case 220:
+          p40 += "";
+          p7 = 283;
+          break;
+        case 221:
+          p31 = p51;
+          p7 = 470;
+          break;
+        case 222:
+          p47 = p46 ^ p48;
+          p7 = 300;
+          break;
+        case 223:
+          p7 = p40 ? 409 : 646;
+          break;
+        case 224:
+          p42 = p24[p41];
+          p7 = 186;
+          break;
+        case 225:
+          ++p14;
+          p7 = 80;
+          break;
+        case 226:
+          p22 = p60;
+          p7 = 244;
+          break;
+        case 227:
+          p44 = [];
+          p7 = 243;
+          break;
+        case 228:
+          p7 = 32;
+          break;
+        case 229:
+          p22 = function (...ﹲיּ) {
+            return f(41, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 333;
+          break;
+        case 230:
+          p45 = new p["Uint8Array"](p46);
+          p7 = 512;
+          break;
+        case 231:
+          p17 = p40;
+          p7 = 341;
+          break;
+        case 232:
+          p56 = p10.ﱡﱢ[2];
+          p7 = 236;
+          break;
+        case 233:
+          ++p10.ءﹱ;
+          p7 = 522;
+          break;
+        case 234:
+          p40 = p10.ﱣﹱ(p41);
+          p7 = 271;
+          break;
+        case 235:
+          p43[0] = p5;
+          p7 = 516;
+          break;
+        case 236:
+          p58 = p10.ﱡﱢ[3];
+          p7 = 116;
+          break;
+        case 237:
+          p48 = p4(p47, p15)(p16);
+          p7 = 32;
+          break;
+        case 238:
+          p25 = p40;
+          p7 = 399;
+          break;
+        case 239:
+          p20 = p6;
+          p7 = 480;
+          break;
+        case 240:
+          p7 = 113;
+          break;
+        case 241:
+          p42 = p10.ءﹱ;
+          p7 = 433;
+          break;
+        case 242:
+          p7 = 630;
+          break;
+        case 243:
+          p46 = new p["Uint32Array"](p29);
+          p7 = 200;
+          break;
+        case 244:
+          p46 = p29[1];
+          p7 = 619;
+          break;
+        case 245:
+          p44 = p10.ﱡﱢ[1];
+          p7 = 198;
+          break;
+        case 246:
+          p58 = p54 + 65536;
+          p7 = 563;
+          break;
+        case 247:
+          p7 = 333;
+          break;
+        case 248:
+          p7 = p48 ? 418 : 133;
+          break;
+        case 249:
+          p43 = p32;
+          p7 = 641;
+          break;
+        case 250:
+          p45 = p44 - p48;
+          p7 = 637;
+          break;
+        case 251:
+          p7 = p3 ? 532 : 460;
+          break;
+        case 252:
+          p40 = p10.ﹱﱡ["length"];
+          p7 = 404;
+          break;
+        case 253:
+          p18 = function (...ﹲיּ) {
+            return f(534, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 69;
+          break;
+        case 254:
+          p39 = p4(p38, p["console"])("[测试]:常规版\n[作者微信]: CyyWon\n[微信公众号]: https://mp.weixin.qq.com/s/FY7Qy4FXP1yXSGHtSSnnvg");
+          p7 = 261;
+          break;
+        case 255:
+          p22 = p6;
+          p7 = 354;
+          break;
+        case 256:
+          ++p20;
+          p7 = 111;
+          break;
+        case 257:
+          p44 = 24 - p47;
+          p7 = 162;
+          break;
+        case 258:
+          p46 = p32 > 999;
+          p7 = 100;
+          break;
+        case 259:
+          p7 = p40 ? 81 : 598;
+          break;
+        case 260:
+          p40 = p40 < p41;
+          p7 = 132;
+          break;
+        case 261:
+          return;
+          break;
+        case 262:
+          p38 = p36();
+          p7 = 194;
+          break;
+        case 263:
+          p41 = p24["length"];
+          p7 = 85;
+          break;
+        case 264:
+          p15 = p40;
+          p7 = 457;
+          break;
+        case 265:
+          p40 = p10.ءﹱ["all"];
+          p7 = 231;
+          break;
+        case 266:
+          p51 = p4(p50, p26)();
+          p7 = 632;
+          break;
+        case 267:
+          p42 = new p["Uint8Array"](p43);
+          p7 = 285;
+          break;
+        case 268:
+          p55 = p51 | p57;
+          p7 = 290;
+          break;
+        case 269:
+          f2(2).ﹱﱡ[p42] = 42;
+          p7 = 307;
+          break;
+        case 270:
+          p16 = p40;
+          p7 = 39;
+          break;
+        case 271:
+          p16 = p40;
+          p7 = 252;
+          break;
+        case 272:
+          p46 = p23 << 2;
+          p7 = 230;
+          break;
+        case 273:
+          p29[2] = p40;
+          p7 = 518;
+          break;
+        case 274:
+          p32 = p46 + p48;
+          p7 = 258;
+          break;
+        case 275:
+          p44 = p4(p43, p13)(p14);
+          p7 = 167;
+          break;
+        case 276:
+          p7 = 309;
+          break;
+        case 277:
+          p40 = p14;
+          p7 = 65;
+          break;
+        case 278:
+          p39 = p37();
+          p7 = 301;
+          break;
+        case 279:
+          p42 = p33;
+          p7 = 152;
+          break;
+        case 280:
+          p50 = p34 === 2;
+          p7 = 422;
+          break;
+        case 281:
+          p54 = p13["toString"];
+          p7 = 555;
+          break;
+        case 282:
+          p14 = p40;
+          p7 = 380;
+          break;
+        case 283:
+          return p40;
+          break;
+        case 284:
+          p57 = p21 - 14;
+          p7 = 27;
+          break;
+        case 285:
+          p41 = p4(p40, p24)(p42);
+          p7 = 612;
+          break;
+        case 286:
+          p48 = p49;
+          p7 = 188;
+          break;
+        case 287:
+          p41 = p["console"]["log"];
+          p7 = 482;
+          break;
+        case 288:
+          p41 = p["console"]["log"];
+          p7 = 570;
+          break;
+        case 289:
+          p38 = p["console"]["log"];
+          p7 = 254;
+          break;
+        case 290:
+          return p55;
+          break;
+        case 291:
+          p10.ﱣ = 0;
+          p7 = 128;
+          break;
+        case 292:
+          p44 = p10.ﱢﹰ();
+          p7 = 417;
+          break;
+        case 293:
+          p7 = p42 ? 344 : 530;
+          break;
+        case 294:
+          p55[1] = p56;
+          p7 = 216;
+          break;
+        case 295:
+          p51 = "0";
+          p7 = 281;
+          break;
+        case 296:
+          p54 = p53 & 63;
+          p7 = 552;
+          break;
+        case 297:
+          p40 = p40 < p41;
+          p7 = 304;
+          break;
+        case 298:
+          p46 = p15["call"];
+          p7 = 13;
+          break;
+        case 299:
+          p7 = 508;
+          break;
+        case 300:
+          p50 = p10.ﱡﱢ[3];
+          p7 = 538;
+          break;
+        case 301:
+          p36 = !p39;
+          p7 = 434;
+          break;
+        case 302:
+          p44 = p4(p43, p29)(0);
+          p7 = 466;
+          break;
+        case 303:
+          p29[p21] = p48;
+          p7 = 316;
+          break;
+        case 304:
+          p7 = p40 ? 197 : 45;
+          break;
+        case 305:
+          f2(2).ﹱﱡ[p45] = 119;
+          p7 = 644;
+          break;
+        case 306:
+          p7 = 32;
+          break;
+        case 307:
+          p10.ﱞﱣ = 0;
+          p7 = 29;
+          break;
+        case 308:
+          p57 = -1009589776;
+          p7 = 521;
+          break;
+        case 309:
+          p46 = p33;
+          p7 = 585;
+          break;
+        case 310:
+          p43 = p42 << 4;
+          p7 = 509;
+          break;
+        case 311:
+          p42 = p41["length"];
+          p7 = 603;
+          break;
+        case 312:
+          p58 = p57 | 0;
+          p7 = 176;
+          break;
+        case 313:
+          p24[p41] = p42;
+          p7 = 507;
+          break;
+        case 314:
+          p57 = p56 ^ 56320;
+          p7 = 494;
+          break;
+        case 315:
+          p7 = 497;
+          break;
+        case 316:
+          p45 = p21;
+          p7 = 431;
+          break;
+        case 317:
+          p41 = p4(p40, p15)(p["Uint8Array"]);
+          p7 = 311;
+          break;
+        case 318:
+          p24[p40] = p42;
+          p7 = 95;
+          break;
+        case 319:
+          p49 = p48 & p50;
+          p7 = 435;
+          break;
+        case 320:
+          p54 = p53 & 31;
+          p7 = 472;
+          break;
+        case 321:
+          return;
+          break;
+        case 322:
+          p49 = p16 ^ 55296;
+          p7 = 24;
+          break;
+        case 323:
+          p51 = p50 ^ p52;
+          p7 = 388;
+          break;
+        case 324:
+          p40 = p["console"]["log"];
+          p7 = 608;
+          break;
+        case 325:
+          p42 = p4(p41, p15)(p44);
+          p7 = 595;
+          break;
+        case 326:
+          p40 = [];
+          p7 = 395;
+          break;
+        case 327:
+          p49 = p15["push"];
+          p7 = 364;
+          break;
+        case 328:
+          p50 = p4(p49, p15)(...p51);
+          p7 = 32;
+          break;
+        case 329:
+          p13 = p40;
+          p7 = 89;
+          break;
+        case 330:
+          p56 = p16 & 63;
+          p7 = 363;
+          break;
+        case 331:
+          p51 = p50 == 0;
+          p7 = 26;
+          break;
+        case 332:
+          p51[0] = p52;
+          p7 = 330;
+          break;
+        case 333:
+          p14 = p["document"];
+          p7 = 91;
+          break;
+        case 334:
+          p44 = p41["length"];
+          p7 = 159;
+          break;
+        case 335:
+          p41 = p["console"]["log"];
+          p7 = 34;
+          break;
+        case 336:
+          p42 = p20;
+          p7 = 573;
+          break;
+        case 337:
+          p15 = p40;
+          p7 = 174;
+          break;
+        case 338:
+          p40 = p33 < p17;
+          p7 = 223;
+          break;
+        case 339:
+          p52 = [];
+          p7 = 136;
+          break;
+        case 340:
+          p43 = p13["push"];
+          p7 = 367;
+          break;
+        case 341:
+          p18 = 1;
+          p7 = 125;
+          break;
+        case 342:
+          p55 = p13["charCodeAt"];
+          p7 = 379;
+          break;
+        case 343:
+          p52[3] = p54;
+          p7 = 366;
+          break;
+        case 344:
+          p45 = p10.ءﹱ;
+          p7 = 130;
+          break;
+        case 345:
+          p42 = p4(p41, p["console"])("==================小提示===================");
+          p7 = 335;
+          break;
+        case 346:
+          p18 = p40;
+          p7 = 191;
+          break;
+        case 347:
+          p41 = p4(p40, p15)(p43);
+          p7 = 334;
+          break;
+        case 348:
+          p41[3] = p48;
+          p7 = 211;
+          break;
+        case 349:
+          p54 = p4(p53, p15)(p55);
+          p7 = 381;
+          break;
+        case 350:
+          p54 = p54 >>> p55;
+          p7 = 72;
+          break;
+        case 351:
+          p54 = p4(p53, p15)(...p55);
+          p7 = 381;
+          break;
+        case 352:
+          p40 = p24["set"];
+          p7 = 489;
+          break;
+        case 353:
+          p41 = p15["call"];
+          p7 = 359;
+          break;
+        case 354:
+          p40 = p19["length"];
+          p7 = 154;
+          break;
+        case 355:
+          p47 = p15["push"];
+          p7 = 237;
+          break;
+        case 356:
+          p51[1] = p55;
+          p7 = 542;
+          break;
+        case 357:
+          p43 = p4(p42, p41)(...p44);
+          p7 = 491;
+          break;
+        case 358:
+          p7 = 151;
+          break;
+        case 359:
+          p43 = p["Array"]["prototype"];
+          p7 = 439;
+          break;
+        case 360:
+          p50 = p17 >> 10;
+          p7 = 331;
+          break;
+        case 361:
+          p42 = p22["getUint32"];
+          p7 = 88;
+          break;
+        case 362:
+          p21 = 0;
+          p7 = 377;
+          break;
+        case 363:
+          p55 = 128 + p56;
+          p7 = 63;
+          break;
+        case 364:
+          p51 = [];
+          p7 = 28;
+          break;
+        case 365:
+          ++p14;
+          p7 = 160;
+          break;
+        case 366:
+          p28 = p52;
+          p7 = 626;
+          break;
+        case 367:
+          p45 = p10.ﱡ[p32];
+          p7 = 169;
+          break;
+        case 368:
+          p44 += "";
+          p7 = 126;
+          break;
+        case 369:
+          p45 = p44 - p50;
+          p7 = 170;
+          break;
+        case 370:
+          p43 = p10.ﹱﱡ[1];
+          p7 = 560;
+          break;
+        case 371:
+          p42 = p10.ﹱﱡ(1);
+          p7 = 124;
+          break;
+        case 372:
+          p41 = p10.ﱡ["length"];
+          p7 = 260;
+          break;
+        case 373:
+          p52 = p25[p51];
+          p7 = 537;
+          break;
+        case 374:
+          p40 = p34;
+          p7 = 557;
+          break;
+        case 375:
+          p54 = p52 + p55;
+          p7 = 504;
+          break;
+        case 376:
+          p46 = p49;
+          p7 = 620;
+          break;
+        case 377:
+          p43 = p21 < 80;
+          p7 = 628;
+          break;
+        case 378:
+          p40 = new p["Uint32Array"](p41);
+          p7 = 486;
+          break;
+        case 379:
+          ++p14;
+          p7 = 60;
+          break;
+        case 380:
+          p40 = [];
+          p7 = 264;
+          break;
+        case 381:
+          p49 = p15["push"];
+          p7 = 533;
+          break;
+        case 382:
+          p40 = ~p41;
+          p7 = 273;
+          break;
+        case 383:
+          p29[1] = p45;
+          p7 = 406;
+          break;
+        case 384:
+          return p44;
+          break;
+        case 385:
+          p7 = 524;
+          break;
+        case 386:
+          p7 = 620;
+          break;
+        case 387:
+          p40 = p4(p39, p14)("getUserAgentButton");
+          p7 = 270;
+          break;
+        case 388:
+          p54 = p10.ﱡﱢ[3];
+          p7 = 208;
+          break;
+        case 389:
+          p7 = 70;
+          break;
+        case 390:
+          p55 = p25[p54];
+          p7 = 498;
+          break;
+        case 391:
+          p45 = p10.ءﹱ;
+          p7 = 233;
+          break;
+        case 392:
+          p20 = 0;
+          p7 = 111;
+          break;
+        case 393:
+          p7 = p43 ? 156 : 636;
+          break;
+        case 394:
+          p15[p32] = p43;
+          p7 = 109;
+          break;
+        case 395:
+          p10.ﹱﱡ = p40;
+          p7 = 579;
+          break;
+        case 396:
+          p44 = p41["length"];
+          p7 = 298;
+          break;
+        case 397:
+          p45 = new p["Uint8Array"](p47);
+          p7 = 145;
+          break;
+        case 398:
+          p49 = p10.ﱡﱢ[1];
+          p7 = 529;
+          break;
+        case 399:
+          p41 = [];
+          p7 = 574;
+          break;
+        case 400:
+          ++p34;
+          p7 = 374;
+          break;
+        case 401:
+          p40 += p13;
+          p7 = 2;
+          break;
+        case 402:
+          p59 = 128 + p61;
+          p7 = 214;
+          break;
+        case 403:
+          p50 = p27(p59, 1);
+          p7 = 31;
+          break;
+        case 404:
+          p17 = p40;
+          p7 = 137;
+          break;
+        case 405:
+          return p42;
+          break;
+        case 406:
+          p45 = p29["pop"];
+          p7 = 163;
+          break;
+        case 407:
+          p49 = p24[p48];
+          p7 = 376;
+          break;
+        case 408:
+          p40 = p["Function"]["prototype"];
+          p7 = 140;
+          break;
+        case 409:
+          p42 = p18 + p33;
+          p7 = 463;
+          break;
+        case 410:
+          ++p10.ءﹱ;
+          p7 = 166;
+          break;
+        case 411:
+          p42 = p22["getUint32"];
+          p7 = 485;
+          break;
+        case 412:
+          p50 = p34 === 2;
+          p7 = 594;
+          break;
+        case 413:
+          p15 = 2;
+          p7 = 251;
+          break;
+        case 414:
+          p40 = p14;
+          p7 = 90;
+          break;
+        case 415:
+          p42 = function (...ﹲיּ) {
+            return f(584, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 474;
+          break;
+        case 416:
+          p48 = p47["length"];
+          p7 = 250;
+          break;
+        case 417:
+          p43 += p44;
+          p7 = 114;
+          break;
+        case 418:
+          p48 = p34;
+          p7 = 443;
+          break;
+        case 419:
+          p29[3] = p40;
+          p7 = 53;
+          break;
+        case 420:
+          p7 = 418;
+          break;
+        case 421:
+          p16 = p51;
+          p7 = 625;
+          break;
+        case 422:
+          p48 = p50;
+          p7 = 192;
+          break;
+        case 423:
+          p59 = p56 ^ p61;
+          p7 = 403;
+          break;
+        case 424:
+          p54 = -899497514;
+          p7 = 343;
+          break;
+        case 425:
+          p46 = p4(p45, p29)(p22);
+          p7 = 437;
+          break;
+        case 426:
+          p50 = p10.ﱡﱢ[1];
+          p7 = 627;
+          break;
+        case 427:
+          p48 = p46 | 0;
+          p7 = 303;
+          break;
+        case 428:
+          p7 = p50 ? 295 : 108;
+          break;
+        case 429:
+          p41 = [];
+          p7 = 135;
+          break;
+        case 430:
+          p10.ﱣ = p49;
+          p7 = 142;
+          break;
+        case 431:
+          ++p21;
+          p7 = 630;
+          break;
+        case 432:
+          p7 = 168;
+          break;
+        case 433:
+          ++p10.ءﹱ;
+          p7 = 269;
+          break;
+        case 434:
+          return;
+          break;
+        case 435:
+          p52 = p10.ﱡﱢ[1];
+          p7 = 8;
+          break;
+        case 436:
+          p47 = p30[p21];
+          p7 = 189;
+          break;
+        case 437:
+          p45 = p21;
+          p7 = 84;
+          break;
+        case 438:
+          p7 = p49 ? 122 : 103;
+          break;
+        case 439:
+          p44 = p43["map"];
+          p7 = 325;
+          break;
+        case 440:
+          p41 = p["console"]["log"];
+          p7 = 345;
+          break;
+        case 441:
+          p48 = p49;
+          p7 = 96;
+          break;
+        case 442:
+          p7 = p49 ? 141 : 175;
+          break;
+        case 443:
+          ++p34;
+          p7 = 123;
+          break;
+        case 444:
+          p44 = p33 < 5;
+          p7 = 180;
+          break;
+        case 445:
+          p7 = 413;
+          break;
+        case 446:
+          f2(2).ﹱﱡ[p45] = 69;
+          p7 = 201;
+          break;
+        case 447:
+          p48 = p10.ﱣ + p33;
+          p7 = 454;
+          break;
+        case 448:
+          ++p10.ءﹱ;
+          p7 = 305;
+          break;
+        case 449:
+          p41 = p29[0];
+          p7 = 382;
+          break;
+        case 450:
+          p48 = p49;
+          p7 = 438;
+          break;
+        case 451:
+          p7 = p40 ? 411 : 582;
+          break;
+        case 452:
+          p10.ﱡ[p34] = p45;
+          p7 = 624;
+          break;
+        case 453:
+          p40 = new p["Uint8Array"](p15);
+          p7 = 523;
+          break;
+        case 454:
+          p49 = p48 + p34;
+          p7 = 430;
+          break;
+        case 455:
+          p46 = p33;
+          p7 = 528;
+          break;
+        case 456:
+          p48 = p4(p47, p["Math"])();
+          p7 = 274;
+          break;
+        case 457:
+          p41 = p13 + p14;
+          p7 = 234;
+          break;
+        case 458:
+          p40 = p32;
+          p7 = 372;
+          break;
+        case 459:
+          p7 = 143;
+          break;
+        case 460:
+          p35 = 1;
+          p7 = 508;
+          break;
+        case 461:
+          p43 = p10.ﹱﱡ[1];
+          p7 = 597;
+          break;
+        case 462:
+          p42 = p41 >>> 6;
+          p7 = 310;
+          break;
+        case 463:
+          p43 = p10.ﹱﱡ[p33];
+          p7 = 1;
+          break;
+        case 464:
+          p48 = "请关闭开发者工具" + p35;
+          p7 = 487;
+          break;
+        case 465:
+          return;
+          break;
+        case 466:
+          p30 = p44;
+          p7 = 362;
+          break;
+        case 467:
+          p40 = p15["call"];
+          p7 = 531;
+          break;
+        case 468:
+          p48 = function (...ﹲיּ) {
+            return f(215, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 524;
+          break;
+        case 469:
+          p42 = p13;
+          p7 = 461;
+          break;
+        case 470:
+          return p31;
+          break;
+        case 471:
+          p51 = p21 - 3;
+          p7 = 373;
+          break;
+        case 472:
+          p52 = 192 + p54;
+          p7 = 332;
+          break;
+        case 473:
+          p45 = p10.ﱡיּ["prototype"];
+          p7 = 77;
+          break;
+        case 474:
+          p41[1] = p42;
+          p7 = 161;
+          break;
+        case 475:
+          p7 = p42 ? 173 : 371;
+          break;
+        case 476:
+          p55[3] = p5;
+          p7 = 308;
+          break;
+        case 477:
+          p7 = 123;
+          break;
+        case 478:
+          p40 = ~p41;
+          p7 = 419;
+          break;
+        case 479:
+          p32 = 0;
+          p7 = 168;
+          break;
+        case 480:
+          p21 = p6;
+          p7 = 255;
+          break;
+        case 481:
+          p42 = typeof p10.ﹱﱡ;
+          p7 = 566;
+          break;
+        case 482:
+          p43 = "sha1(value+盐):";
+          p7 = 292;
+          break;
+        case 483:
+          p50 = p10.ﱡﱢ[2];
+          p7 = 319;
+          break;
+        case 484:
+          p40 = [];
+          p7 = 329;
+          break;
+        case 485:
+          p44 = p20 << 2;
+          p7 = 587;
+          break;
+        case 486:
+          p24 = p40;
+          p7 = 7;
+          break;
+        case 487:
+          p47 = p4(p46, p["console"])(p48);
+          p7 = 147;
+          break;
+        case 488:
+          p46 = p4(p45, p["console"])("请关闭开发者工具");
+          p7 = 555;
+          break;
+        case 489:
+          p43 = p19["buffer"];
+          p7 = 267;
+          break;
+        case 490:
+          p7 = p42 ? 544 : 510;
+          break;
+        case 491:
+          p50 = p43["join"];
+          p7 = 606;
+          break;
+        case 492:
+          p48 = p10.ﱡﱢ[2];
+          p7 = 222;
+          break;
+        case 493:
+          p44 += "";
+          p7 = 384;
+          break;
+        case 494:
+          p54 = p53 + p57;
+          p7 = 246;
+          break;
+        case 495:
+          p40 += p18;
+          p7 = 220;
+          break;
+        case 496:
+          p53 = p15["push"];
+          p7 = 19;
+          break;
+        case 497:
+          p19 = p6;
+          p7 = 545;
+          break;
+        case 498:
+          p53 = p52 ^ p55;
+          p7 = 284;
+          break;
+        case 499:
+          p55 = [];
+          p7 = 559;
+          break;
+        case 500:
+          p40 = new p["DataView"](p41);
+          p7 = 609;
+          break;
+        case 501:
+          if (p42) {
+            p7 = 75;
+          } else {
+            p7 = 408;
+          }
+          break;
+        case 502:
+          p42 = p["String"]["prototype"];
+          p7 = 581;
+          break;
+        case 503:
+          p7 = 555;
+          break;
+        case 504:
+          p57 = p21 / 20;
+          p7 = 312;
+          break;
+        case 505:
+          p29[p20] = p43;
+          p7 = 643;
+          break;
+        case 506:
+          p7 = 568;
+          break;
+        case 507:
+          p40 = p23 - 1;
+          p7 = 589;
+          break;
+        case 508:
+          p44 = p35 <= 9;
+          p7 = 112;
+          break;
+        case 509:
+          p44 = p43 + 16;
+          p7 = 571;
+          break;
+        case 510:
+          p10.ﹱﱡ[1] = p10.ﱞﱣ;
+          p7 = 469;
+          break;
+        case 511:
+          p55 = 32 - p14;
+          p7 = 350;
+          break;
+        case 512:
+          p24 = p45;
+          p7 = 352;
+          break;
+        case 513:
+          p46 = 37;
+          p7 = 18;
+          break;
+        case 514:
+          p49 = p33 === 4;
+          p7 = 450;
+          break;
+        case 515:
+          p7 = 551;
+          break;
+        case 516:
+          p43[1] = p13;
+          p7 = 617;
+          break;
+        case 517:
+          p52[1] = 1859775393;
+          p7 = 187;
+          break;
+        case 518:
+          p41 = p29[1];
+          p7 = 478;
+          break;
+        case 519:
+          p56 = 240 + p58;
+          p7 = 10;
+          break;
+        case 520:
+          p40 = p40 < p41;
+          p7 = 259;
+          break;
+        case 521:
+          p55[4] = p57;
+          p7 = 635;
+          break;
+        case 522:
+          f2(2).ﹱﱡ[p45] = p10.ﹱﱟ;
+          p7 = 35;
+          break;
+        case 523:
+          p19 = p40;
+          p7 = 239;
+          break;
+        case 524:
+          p44[1] = p48;
+          p7 = 357;
+          break;
+        case 525:
+          p10.ﹱﱡ[p40] = p16;
+          p7 = 38;
+          break;
+        case 526:
+          p20 = 0;
+          p7 = 556;
+          break;
+        case 527:
+          p49 = p48 | 0;
+          p7 = 73;
+          break;
+        case 528:
+          ++p33;
+          p7 = 309;
+          break;
+        case 529:
+          p48 = ~p49;
+          p7 = 586;
+          break;
+        case 530:
+          return p12.יּﹱ = p3;
+          break;
+        case 531:
+          p42 = p["Function"]["prototype"];
+          p7 = 15;
+          break;
+        case 532:
+          p45 = p["console"]["log"];
+          p7 = 488;
+          break;
+        case 533:
+          p51 = [];
+          p7 = 5;
+          break;
+        case 534:
+          p40 = p["navigator"]["appCodeName"];
+          p7 = 548;
+          break;
+        case 535:
+          p24[p20] = p43;
+          p7 = 336;
+          break;
+        case 536:
+          p42 = p41 % 128;
+          p7 = 117;
+          break;
+        case 537:
+          p54 = p21 - 8;
+          p7 = 390;
+          break;
+        case 538:
+          p49 = p47 ^ p50;
+          p7 = 179;
+          break;
+        case 539:
+          p10.ﱡ = p40;
+          p7 = 146;
+          break;
+        case 540:
+          p7 = 381;
+          break;
+        case 541:
+          p45 = p29["unshift"];
+          p7 = 425;
+          break;
+        case 542:
+          p50 = p4(p49, p15)(...p51);
+          p7 = 32;
+          break;
+        case 543:
+          p45 = p16 < 128;
+          p7 = 64;
+          break;
+        case 544:
+          p45 = p10.ءﹱ;
+          p7 = 448;
+          break;
+        case 545:
+          p20 = 0;
+          p7 = 93;
+          break;
+        case 546:
+          p49 = p33 === 2;
+          p7 = 286;
+          break;
+        case 547:
+          p51[0] = p52;
+          p7 = 11;
+          break;
+        case 548:
+          p13 = p40;
+          p7 = 326;
+          break;
+        case 549:
+          p33 = 1;
+          p7 = 444;
+          break;
+        case 550:
+          p7 = p43 ? 473 : 35;
+          break;
+        case 551:
+          p["globalThis"]["getTip"] = p39;
+          p7 = 143;
+          break;
+        case 552:
+          p52 = 128 + p54;
+          p7 = 547;
+          break;
+        case 553:
+          p40 = p["Function"]["prototype"];
+          p7 = 562;
+          break;
+        case 554:
+          p44 = function (...ﹲיּ) {
+            return f(87, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 151;
+          break;
+        case 555:
+          p55 = p4(p54, p13)(16);
+          p7 = 171;
+          break;
+        case 556:
+          p40 = p20 < p23;
+          p7 = 577;
+          break;
+        case 557:
+          p41 = p15["length"];
+          p7 = 83;
+          break;
+        case 558:
+          p55[0] = 1732584193;
+          p7 = 94;
+          break;
+        case 559:
+          p57 = p16 >> 18;
+          p7 = 57;
+          break;
+        case 560:
+          p42 = p42 === p43;
+          p7 = 490;
+          break;
+        case 561:
+          p7 = p45 ? 127 : 471;
+          break;
+        case 562:
+          p41 = p40["call"];
+          p7 = 590;
+          break;
+        case 563:
+          p16 = p58;
+          p7 = 74;
+          break;
+        case 564:
+          return p53;
+          break;
+        case 565:
+          p42 = p4(p41, p["console"])(p43);
+          p7 = 288;
+          break;
+        case 566:
+          p43 = p42 === "undefined";
+          p7 = 550;
+          break;
+        case 567:
+          p7 = 444;
+          break;
+        case 568:
+          p41[2] = p46;
+          p7 = 631;
+          break;
+        case 569:
+          p41 = p16["length"];
+          p7 = 520;
+          break;
+        case 570:
+          p42 = p4(p41, p["console"])("===========================================");
+          p7 = 54;
+          break;
+        case 571:
+          p23 = p44;
+          p7 = 272;
+          break;
+        case 572:
+          p61 = p60 & 63;
+          p7 = 402;
+          break;
+        case 573:
+          ++p20;
+          p7 = 556;
+          break;
+        case 574:
+          p42 = function (...ﹲיּ) {
+            return f(245, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 70;
+          break;
+        case 575:
+          p45 = p44 & p46;
+          p7 = 398;
+          break;
+        case 576:
+          p46 = p40 + 36;
+          p7 = 4;
+          break;
+        case 577:
+          p7 = p40 ? 361 : 219;
+          break;
+        case 578:
+          p47 = p4(p46, p15)(p49);
+          p7 = 138;
+          break;
+        case 579:
+          p14 = 0;
+          p7 = 553;
+          break;
+        case 580:
+          p44 = p4(p43, p13)(p47);
+          p7 = 249;
+          break;
+        case 581:
+          p43 = p42["charCodeAt"];
+          p7 = 347;
+          break;
+        case 582:
+          p40 = p["Array"]["prototype"];
+          p7 = 82;
+          break;
+        case 583:
+          ++p35;
+          p7 = 508;
+          break;
+        case 584:
+          p44 = p10.ﱡיּ["value"];
+          p7 = 164;
+          break;
+        case 585:
+          ++p33;
+          p7 = 444;
+          break;
+        case 586:
+          p51 = p10.ﱡﱢ[3];
+          p7 = 50;
+          break;
+        case 587:
+          p43 = p4(p42, p22)(p44);
+          p7 = 505;
+          break;
+        case 588:
+          p7 = p44 ? 98 : 113;
+          break;
+        case 589:
+          p41 = p19["length"];
+          p7 = 40;
+          break;
+        case 590:
+          p42 = p41["prototype"];
+          p7 = 501;
+          break;
+        case 591:
+          p47 = p4(p46, p15)(p["DataView"]);
+          p7 = 416;
+          break;
+        case 592:
+          p40 = p16;
+          p7 = 353;
+          break;
+        case 593:
+          ++p32;
+          p7 = 99;
+          break;
+        case 594:
+          p48 = p50;
+          p7 = 248;
+          break;
+        case 595:
+          p45 = p42["length"];
+          p7 = 58;
+          break;
+        case 596:
+          p42 = p42 | p43;
+          p7 = 313;
+          break;
+        case 597:
+          p42 = p42 === p43;
+          p7 = 293;
+          break;
+        case 598:
+          p40 = p15["length"];
+          p7 = 346;
+          break;
+        case 599:
+          p47 = p["Math"]["random"];
+          p7 = 456;
+          break;
+        case 600:
+          p53 = p17 << 10;
+          p7 = 342;
+          break;
+        case 601:
+          ++p10.ﱞﱣ;
+          p7 = 391;
+          break;
+        case 602:
+          p42 = p41["call"];
+          p7 = 227;
+          break;
+        case 603:
+          p16 = p42;
+          p7 = 592;
+          break;
+        case 604:
+          p46 = p45 & 3;
+          p7 = 44;
+          break;
+        case 605:
+          p40 = p4(p39, p14)("userAgentText");
+          p7 = 337;
+          break;
+        case 606:
+          debugger;
+          p51 = p4(p50, p43)("");
+          p7 = 221;
+          break;
+        case 607:
+          p44 += p13;
+          p7 = 368;
+          break;
+        case 608:
+          p41 = p4(p40, p["console"])("嘿嘿，找到正确的盐了吗？");
+          p7 = 199;
+          break;
+        case 609:
+          p22 = p40;
+          p7 = 526;
+          break;
+        case 610:
+          p41 = p10.ﱣ + 66;
+          p7 = 536;
+          break;
+        case 611:
+          p7 = p46 ? 447 : 455;
+          break;
+        case 612:
+          p41 = p24["buffer"];
+          p7 = 378;
+          break;
+        case 613:
+          p7 = 458;
+          break;
+        case 614:
+          p34 = 1;
+          p7 = 123;
+          break;
+        case 615:
+          p44 = p43 + p34;
+          p7 = 92;
+          break;
+        case 616:
+          p21 = 0;
+          p7 = 630;
+          break;
+        case 617:
+          p42 = p4(p41, p40)(...p43);
+          p7 = 405;
+          break;
+        case 618:
+          p16 = p49;
+          p7 = 104;
+          break;
+        case 619:
+          p45 = p27(p46, 30);
+          p7 = 383;
+          break;
+        case 620:
+          p25[p21] = p46;
+          p7 = 33;
+          break;
+        case 621:
+          p27 = p50;
+          p7 = 339;
+          break;
+        case 622:
+          p40 = new p["DataView"](p42);
+          p7 = 639;
+          break;
+        case 623:
+          p44 = p10.ءﹱ;
+          p7 = 629;
+          break;
+        case 624:
+          p43 = p34;
+          p7 = 400;
+          break;
+        case 625:
+          p40 = p14;
+          p7 = 225;
+          break;
+        case 626:
+          p55 = [];
+          p7 = 558;
+          break;
+        case 627:
+          p52 = p10.ﱡﱢ[2];
+          p7 = 323;
+          break;
+        case 628:
+          p7 = p43 ? 101 : 616;
+          break;
+        case 629:
+          ++p10.ءﹱ;
+          p7 = 139;
+          break;
+        case 630:
+          p43 = p21 < 5;
+          p7 = 393;
+          break;
+        case 631:
+          p48 = function (...ﹲיּ) {
+            return f(426, this, arguments, f3(), p6, p6, ...ﹲיּ);
+          };
+          p7 = 348;
+          break;
+        case 632:
+          p47 = p45 + p51;
+          p7 = 206;
+          break;
+        case 633:
+          p7 = 93;
+          break;
+        case 634:
+          p7 = 86;
+          break;
+        case 635:
+          p29 = p55;
+          p7 = 449;
+          break;
+        case 636:
+          p20 += 16;
+          p7 = 86;
+          break;
+        case 637:
+          p49 = p45 + 62;
+          p7 = 618;
+          break;
+        case 638:
+          p7 = 374;
+          break;
+        case 639:
+          p22 = p40;
+          p7 = 392;
+          break;
+        case 640:
+          p48 = p21 / 20;
+          p7 = 527;
+          break;
+        case 641:
+          ++p32;
+          p7 = 458;
+          break;
+        case 642:
+          p7 = p40 ? 134 : 107;
+          break;
+        case 643:
+          p42 = p20;
+          p7 = 256;
+          break;
+        case 644:
+          ++p10.ﱞﱣ;
+          p7 = 510;
+          break;
+        case 645:
+          p44 = p10.ࢭﹱ(p13);
+          p7 = 115;
+          break;
+        case 646:
+          p40 = p15["length"];
+          p7 = 610;
+          break;
+      }
+    }
+  }
+})(globalThis, true, false, (() => {}).call.bind((() => {}).bind), null);
+
+
+</script>
+</body>
+</html>
