@@ -77,7 +77,7 @@ config.ini
 data/
 downloads/
 images/
-
+demo/
 # 备份文件
 *.bak
 *.backup

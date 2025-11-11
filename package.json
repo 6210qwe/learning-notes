@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@babel/generator": "^7.28.0",
+    "@babel/parser": "^7.28.0",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/template": "^7.27.2",
+    "@babel/traverse": "^7.28.0",
+    "@babel/types": "^7.28.2",
+    "crypto-js": "^4.2.0",
+    "deasync": "^0.1.30",
+    "gm-crypto": "^0.1.12",
+    "jsdom": "^26.1.0",
+    "jsencrypt": "^3.3.2",
+    "node-js-image": "^0.0.6",
+    "pako": "^2.1.0",
+    "xhr2": "^0.2.1"
+  }
+}
