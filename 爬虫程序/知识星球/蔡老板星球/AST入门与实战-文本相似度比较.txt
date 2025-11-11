@@ -1,0 +1,68 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2019/8/19/019 17:30
+# @Author  : 永进
+# @Email   : h.user@qq.com
+# @File    : del_similarity.py
+# @Software: PyCharm
+
+import math
+import numpy as np
+import jieba.analyse
+from simhash import Simhash
+
+
+def gen_post_simhash(body, topK=10, withWeight=True):
+    tags = jieba.analyse.extract_tags(body, topK=topK, withWeight=withWeight)
+    sim = Simhash(tags, f=56)
+    return sim.value
+
+
+# 比较不同的个数
+def distance_post_simhash(simhash_value1, simhash_value2, f=56):
+    x = (simhash_value1 ^ simhash_value2) & ((1 << f) - 1)
+    ans = 0
+    while x:
+        ans += 1
+        x &= x - 1
+    return ans
+
+
+def dot_product2(v1, v2):
+    return sum(map(lambda x, y: x * y, v1, v2))
+
+
+def vector_cos5(v1, v2):
+    prod = dot_product2(v1, v2)
+    len1 = math.sqrt(dot_product2(v1, v1))
+    len2 = math.sqrt(dot_product2(v2, v2))
+    return prod / (len1 * len2)
+
+
+def similar_ratio_to_two_texts(body1, body2):
+    """
+    余弦相似度
+    http://stackoverflow.com/questions/18424228/cosine-similarity-between-2-number-lists
+    """
+    topK = 10
+    tag1s = jieba.analyse.extract_tags(body1, topK=topK, withWeight=True)
+    tag2s = jieba.analyse.extract_tags(body2, topK=topK, withWeight=True)
+    tag1s_dict = dict(tag1s)
+    tag2s_dict = dict(tag2s)
+    all_tags = set([t[0] for t in tag2s] + [t[0] for t in tag1s])
+
+    # numpy
+    vec1 = np.array([tag1s_dict.get(tag, 0) for tag in all_tags])
+    vec2 = np.array([tag2s_dict.get(tag, 0) for tag in all_tags])
+    similar = np.sum(vec1 * vec2) / (np.sqrt(np.sum(np.square(vec1))) * np.sqrt(np.sum(np.square(vec2))))
+
+    # other
+    # vec1 = [tag1s_dict.get(tag, 0) for tag in all_tags]
+    # vec2 = [tag2s_dict.get(tag, 0) for tag in all_tags]
+    # similar = vector_cos5(vec1, vec2)
+    return similar
+
+
+if __name__ == '__main__':
+    print(similar_ratio_to_two_texts(
+        "与传统的债券和股票相比 加密货币通常具有更高的夏普比率",
+        "研究：与传统的债券和股票相比，加密货币通常具有更高的夏普比率"))

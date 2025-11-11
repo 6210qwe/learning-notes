@@ -1,0 +1,109 @@
+(function(Jw, rx, rP, Jn, rN, wr, nP) {
+    Pw(0, Jw);
+    function Pw(Pr, rG, xj, wh, rT, rz, xx, PN, wP, nn, rF) {
+        function zT(rJ) {
+            var PP = wh;
+            for (var iw = 1; iw < rJ; ++iw) {
+                PP = PP.__proto__;
+            }
+            return PP;
+        }
+        function Nn() {
+            if (rT) {
+                return rT;
+            }
+            var nw = {};
+            Object.defineProperties(nw, {
+                Pw: {
+                    get: function() {
+                        return xx;
+                    },
+                    set: function(FP) {
+                        xx = FP;
+                    }
+                },
+                Pr: {
+                    get: function() {
+                        return PN;
+                    },
+                    set: function(FP) {
+                        PN = FP;
+                    }
+                }
+            });
+            nw.__proto__ = wh;
+            rT = nw;
+            return nw;
+        }
+        while (1) {
+            switch (Pr) {
+            case 0:
+                wP = function() {
+                    return rN(Pw, [wr, 1, this, arguments, Nn(), nP, nP].concat(Jn([].slice, arguments)()))();
+                }
+                ;
+                Pr = 13;
+                break;
+            case 13:
+                Pr = 15;
+                break;
+            case 15:
+                Jw["add"] = wP;
+                Pr = 10;
+                break;
+            case 10:
+                Pr = 2;
+                Jw["c"] = nP;
+                break;
+            case 2:
+                Pr = 12;
+                Jw["d"] = nP;
+                break;
+
+            case 12:
+                wP = Jw["add"]((Pr = 11) - 10, 2);
+                break;
+            case 1:
+                rF = xx + PN;
+                Pr = 5;
+                break;
+            case 5:
+                return rF;
+            case 11:
+                Pr = 9;
+                Jw["c"] = wP;
+                break;
+            case 9:
+                wP = Jw["add"]((Pr = 7) - 4, 4);
+                break;
+            case 7:
+                Pr += 9;
+                Jw["d"] = wP;
+                break;
+            case 16:
+                wP = Jw["console"][Pr = 3,
+                "log"];
+                break;
+            case 3:
+                Pr = 14;
+                rF = [];
+                break;
+            case 14:
+                rF[(Pr = 4) - 4] = Jw["c"];
+                break;
+            case 4:
+                rF[(Pr += 4) - 7] = Jw["d"];
+                break;
+            case 8:
+                Pr = 6;
+                nn = rN(wP, (rF.unshift(Jw["console"]),
+                rF))();
+                break;
+            case 6:
+                return;
+            }
+
+        }
+    }
+}
+)(globalThis, true, false, Object.call.bind(Array.bind), Array.apply.bind(Number.bind), null);

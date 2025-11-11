@@ -1,0 +1,89 @@
+body{
+    width: 200px;
+    height: 600px;
+    background-color: #ffffff;
+}
+
+a{
+    text-decoration: none;
+    font-size: 13.3px;
+    color: white; /* 给文字添加白色 */
+}
+
+.box-div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 50px; /* 可调整 */
+    text-align: center;
+}
+
+
+.div-style{
+    width: 200px;
+    height: 50px;
+    background-color: #f4511e;
+    border: none;
+    border-radius: 10px;
+}
+
+.div-style h4 {
+    display: inline-block;
+    margin: 0; /* 去除默认的 margin */
+    width: 100px;
+    font-weight: normal;
+    font-size: 13.3px;
+    color: white; /* 给文字添加白色 */
+    line-height: 50px; /* 确保文字垂直居中 */
+}
+
+
+/* 样式化复选框为开关 */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+
+.box-div .div-style span{
+    text-align: center;
+}

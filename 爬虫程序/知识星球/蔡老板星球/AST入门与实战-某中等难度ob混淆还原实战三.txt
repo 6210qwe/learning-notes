@@ -1,0 +1,62 @@
+function __p_1383156709(a) {
+  a = __p_3592387329 + (__p_3592387329 = a, 0);
+  return a;
+}
+
+var __p_3592387329;
+
+
+function __p_1383156709(a) {
+   __p_3592387329 = a;
+  a = __p_3592387329 +  0;
+  return a;
+}
+
+做了两件事，设置全局变量 __p_3592387329的值，然后 return
+
+
+function __p_3491553112_calc(__p_5639409906, __p_8518586100) {
+  switch (__p_3592387329) {
+    case 21:
+      return !__p_5639409906;
+    case -20:
+      return -__p_5639409906;
+    case 3:
+      return typeof __p_5639409906;
+    case 36:
+      return void __p_5639409906;
+    case -37:
+      return ~__p_5639409906;
+  }
+}
+
+
+__p_3491553112_calc([], __p_1383156709(21))  ==> ![] 
+
+__p_3491553112_calc(3942, __p_3592387329 = -20)  ==> -3942
+
+
+{"21":!,"-20":"-"....}
+
+
+经验:变量函数定义类型的时候，因为要获取binding，有时候我们使用
+
+let  binding = path.scope.getBinding(id.name);
+
+有时候也用
+
+let  binding = path.parentPath.scope.getBinding(id.name);  //函数体里面有变量名和函数名一样。
+
+function i(a,b)
+{
+  var i;....
+}
+
+
+__p_3491553112_calc(e, __p_1383156709(21)) ==> !e
+
+
+
+
+
+

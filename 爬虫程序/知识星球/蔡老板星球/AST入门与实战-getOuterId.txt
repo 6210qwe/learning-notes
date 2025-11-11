@@ -1,0 +1,48 @@
+﻿const parser        = require("@babel/parser");
+const traverse      = require("@babel/traverse").default;
+const types         = require("@babel/types");
+const generator     = require("@babel/generator").default;
+
+
+//js混淆代码读取
+var sourceCode = `
+var a = 123;
+(function () {
+  var _0x355278;
+  a = 456;
+  try {
+    var _0x3106fa = Function("return (function() {}.constructor(\\"return this\\")( ));");
+
+    _0x355278 = _0x3106fa();
+  } catch (_0x1b2de4) {
+    _0x355278 = window;
+  }
+
+  _0x355278["setInterval"](_0xc9d22e, 4000);
+})();
+`
+
+let ast    = parser.parse(sourceCode);
+
+const removeDeadCode = {
+	ExpressionStatement(path)
+	{
+		if (!types.isCallExpression(path.node.expression) ||
+		    !types.isFunctionExpression(path.node.expression.callee))
+			return;
+
+		let code = path.toString();
+		let localBlock = parser.parse(code);
+		traverse(localBlock, {
+				ExpressionStatement(_path)
+				{
+					for (var key in _path.scope.globals)
+					{
+						console.log(key)
+					}
+				}
+		})
+	},
+};
+
+traverse(ast,removeDeadCode)

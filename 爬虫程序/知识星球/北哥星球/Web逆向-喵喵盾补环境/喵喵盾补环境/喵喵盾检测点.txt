@@ -1,0 +1,51 @@
+注意：创建a标签时给href赋值,浏览器自动给location.href、delete 删不了对象,body.removeChild 可以、body.appendChild、removeChild 添加的标签会影响到childElementCount并添加到all中、创建window它的id标签为属性名
+0、typeof window、global、SharedArrayBuffer、Buffer、clearImmediate、process
+1、Object.keys(window).length; 第一次取
+2、window.addEventListener  是否存在
+3、addEventListener.toString().indexOf('[native code]')
+4、typeof document
+5、document中是否有defaultView,是自有属性还是继承的
+6、document.createElement 创建a标签 a.href = '',a.id='xuxu'
+    这里浏览器直接会给 a.href 赋值为 location.href
+    检测a.href !== ''，'xuxu' in document.all
+    typeof xuxu
+    delete xuxu  这里delete是删除不了的
+    typeof xuxu
+7、document.createElement创建input标签 检测value属性是否存在
+8、document.createElement创建俩个div标签  === 是否相等
+9、location.toString() === location.href
+10、typeof top   delete top 不能删除
+11、Object.keys(window).length 与第一次对比是否相等
+12、typeof document.body.childElementCount  document.body.childElementCount !== 8
+13、document.body.childElementCount 第一次取
+    document.body.removeChild(上面创建的a标签)
+    document.body.childElementCount 第二次取 与 第一次对比是否相等
+    'xuxu' in document.all  是否存在
+    typeof xuxu
+14、document.all.length 第一次取
+    document.createElement 创建div
+    document.body.appendChild 添加 创建的div
+    document.all.length 第二次取
+    document.all.length 第一次取 + 1  === document.all.length 第二次取
+15、取navigator.userAgent 加密添加到xuxuarr 列表
+16、window.window === window
+    location.href + location.assign 加密添加到xuxuarr 列表
+17、document.__proto__.constructor.__proto__.__proto__.__proto__ === EventTarget
+    document.URL + document.readyState 加密添加到xuxuarr 列表
+18、typeof document.all === 'undefined'
+    String(screen.availWidth) + String(screen.availHeight) + String(screen.availLeft) + String(screen.availTop) 加密添加到xuxuarr 列表
+19、Object.getOwnPropertyDescriptor(document,'all') === undefined
+    navigator.appCodeName + navigator.appName + navigator.vendor 加密添加到xuxuarr 列表
+20、document.all.__proto__.toString() === '[object HTMLAllCollection]'
+    document.adoptNode.name + document.appendChild.name 加密添加到xuxuarr 列表
+21、chrome.csi.name === ''
+    for (var x in chrome){
+        str += x
+    } 加密添加到xuxuarr 列表
+22、Node.ATTRIBUTE_NODE === 2
+    EventTarget.toString() + window.toString() 加密添加到xuxuarr 列表
+23、Document.CDATA_SECTION_NODE === 4
+    HTMLDocument.toString() + Navigation.toString() 加密添加到xuxuarr 列表
+24、HTMLDocument.DOCUMENT_NODE === 9
+    Node.toString() + Screen.toString() 加密添加到xuxuarr 列表
+最后 window.xuxusign = xuxuarr.join('')

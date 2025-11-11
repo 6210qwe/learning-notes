@@ -1,0 +1,48 @@
+const { TextEncoder, TextDecoder } = require('util');
+function rc4RevS(key, data) {
+  // 初始化 S 盒为反转值，和临时子密钥 K
+  const S = new Uint8Array(256);
+  const K = new Uint8Array(256);
+  for (let i = 0; i < 256; i++) {
+    S[i] = 255 - i;            // 反转初始 S
+    K[i] = key[i % key.length];
+  }
+
+  // 初始置换（KSA）
+  let j = 0;
+  for (let i = 0; i < 256; i++) {
+    j = (j + S[i] + K[i]) & 0xff;
+    [S[i], S[j]] = [S[j], S[i]];
+  }
+
+  // 伪随机生成与加密/解密（PRGA）
+  const output = new Uint8Array(data.length);
+  let i = 0;
+  j = 0;
+  for (let idx = 0; idx < data.length; idx++) {
+    i = (i + 1) & 0xff;
+    j = (j + S[i]) & 0xff;
+    [S[i], S[j]] = [S[j], S[i]];
+    const K_ = S[(S[i] + S[j]) & 0xff];
+    output[idx] = data[idx] ^ K_;
+  }
+
+  return output;
+}
+function rc4_decode(key, data){
+    const bytes1 = new Uint8Array(
+      data.match(/.{2}/g).map(byte => parseInt(byte, 16))
+    );
+
+    const keyBytes   = new TextEncoder().encode(key);
+    const decryptedBytes = rc4RevS(keyBytes, bytes1);
+    return new TextDecoder().decode(decryptedBytes)
+}
+
+function rc4_encode(key, data) {
+    const keyBytes = new TextEncoder().encode(key);
+    const plainBytes = new TextEncoder().encode(data);
+// 加密
+    const cipherBytes = rc4RevS(keyBytes, plainBytes);
+    return Array.from(cipherBytes).map(function(b){ return b.toString(16).padStart(2, '0')}).join('')
+}

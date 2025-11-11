@@ -1,0 +1,117 @@
+(function (Jw, rx, rP, Jn, rN, wr, nP) {
+  Pw(0, Jw);
+  function Pw(Pr, rG, xj, wh, rT, rz, xx, PN, wP, nn, rF) {
+    function zT(rJ) {
+      var PP = wh;
+      for (var iw = 1; iw < rJ; ++iw) {
+        PP = PP.__proto__;
+      }
+      return PP;
+    }
+    function Nn() {
+      if (rT) {
+        return rT;
+      }
+      var nw = {};
+      Object.defineProperties(nw, {
+        Pw: {
+          get: function () {
+            return xx;
+          },
+          set: function (FP) {
+            xx = FP;
+          }
+        },
+        Pr: {
+          get: function () {
+            return PN;
+          },
+          set: function (FP) {
+            PN = FP;
+          }
+        }
+      });
+      nw.__proto__ = wh;
+      rT = nw;
+      return nw;
+    }
+    while (1) {
+      if (Pr > 12) {
+        if (15 > Pr++) {
+          if (Pr < 15) {
+            ++Pr;
+          } else {
+            rF[(Pr = 4) - 4] = Jw["c"];
+          }
+        } else {
+          if (Pr < 17) {
+            Pr -= 6;
+            Jw["add"] = wP;
+          } else {
+            wP = Jw["console"][Pr = 3, "log"];
+          }
+        }
+      } else {
+        if (Pr < 5) {
+          if (3 < Pr) {
+            rF[(Pr += 4) - 7] = Jw["d"];
+          } else {
+            if (Pr > 2) {
+              Pr = 14;
+              rF = [];
+            } else {
+              if (2 < ++Pr) {
+                Pr = 12;
+                Jw["d"] = nP;
+              } else {
+                if (Pr < 2) {
+                  Pr += 12;
+                  wP = function () {
+                    return rN(Pw, [wr, 1, this, arguments, Nn(), nP, nP].concat(Jn([].slice, arguments)()))();
+                  };
+                } else {
+                  rF = xx + PN;
+                  Pr = 5;
+                }
+              }
+            }
+          }
+        } else {
+          if (Pr > 8) {
+            if (Pr > 11) {
+              wP = Jw["add"]((Pr = 11) - 10, 2);
+            } else {
+              if (Pr > 10) {
+                Pr = 9;
+                Jw["c"] = wP;
+              } else {
+                if (9 < Pr) {
+                  Pr = 2;
+                  Jw["c"] = nP;
+                } else {
+                  wP = Jw["add"]((Pr = 7) - 4, 4);
+                }
+              }
+            }
+          } else {
+            if (7 < Pr) {
+              Pr = 6;
+              nn = rN(wP, (rF.unshift(Jw["console"]), rF))();
+            } else {
+              if (6 < Pr) {
+                Pr += 9;
+                Jw["d"] = wP;
+              } else {
+                if (5 < Pr) {
+                  return;
+                } else {
+                  return rF;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+})(globalThis, true, false, Object.call.bind(Array.bind), Array.apply.bind(Number.bind), null);

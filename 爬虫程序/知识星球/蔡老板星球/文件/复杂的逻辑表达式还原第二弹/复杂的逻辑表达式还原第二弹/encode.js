@@ -1,0 +1,3 @@
+if (((((ZD = ((ZC = (ZB = Zv) && null || Zp) || 9) && Zn) && null || (ZG = ((ZF = (ZE = ZC * ZD) && undefined || Zn) || 9) && ZE * ZF) || 10) && (ZJ = ((ZI = (ZH = ZB - ZG) && undefined || Zn) || 7) && Zq) && 0 || (ZM = ((ZL = ((ZK = ZI * ZJ) || 8) && ZH - ZK) || 1) && Zq) || 5) && ((ZP = (ZO = ((ZN = Zo) || 1) && ZM * ZN) && null || Zr) || 3) && (ZS = (ZR = ((ZQ = ZO * ZP) || 10) && ZL - ZQ) && 0 || Zn) && null || (ZV = (ZU = ((ZT = Zn) || 6) && ZS * ZT) && 0 || ZR - ZU) || 5) && (ZW = void ZV) && undefined) { } else {
+  Yy = ZW;
+}

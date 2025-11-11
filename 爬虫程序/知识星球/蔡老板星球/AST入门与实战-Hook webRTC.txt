@@ -1,0 +1,422 @@
+// ==UserScript==
+// @name         hook RTC
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://ip.voidsec.com/
+// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant        none
+// @run-at       document-start
+// ==/UserScript==
+(function() {
+    'use strict';
+
+    window.myIsAddress = "123.123.123.123";//这里使用你的代理ip
+
+    var plugin = {};
+
+    plugin.rename = function rename(obj, objname) {
+        Object.defineProperties(obj, {
+            [Symbol.toStringTag]: {
+                value: objname,
+                configurable: true,
+                writable: false,
+                enumerable: false
+            }
+        });
+    }
+    ;
+
+    plugin.defineProperty = function defineProperty(obj, key, value, configurable, enumerable, writable, getter, setter) {
+        let attr = {
+            configurable: configurable,
+            enumerable: enumerable
+        }
+        if (value !== undefined) {
+            attr["value"] = value
+        }
+        if (writable !== undefined) {
+            attr["writable"] = writable
+        }
+        if (getter) {
+            attr["get"] = getter
+        }
+        if (setter) {
+            attr["set"] = setter
+        }
+
+        Object.defineProperty(obj, key, attr)
+    }
+    ;
+
+    (()=>{
+        const $toString = Function.toString
+        const myFunction_toString_symbol = Symbol('('.concat('', ')_', (Math.random()) + '').toString(36))
+        const myToString = function() {
+            return typeof this === 'function' && this[myFunction_toString_symbol] || $toString.call(this)
+        }
+
+        function set_native(func, key, value) {
+            Object.defineProperty(func, key, {
+                enumerable: false,
+                configurable: true,
+                writable: true,
+                value: value
+            })
+        }
+        delete Function.prototype.toString
+        set_native(Function.prototype, "toString", myToString)
+        set_native(Function.prototype.toString, myFunction_toString_symbol, "function toString() { [native code] }")
+        plugin.func_set_native = (func)=>{
+            set_native(func, myFunction_toString_symbol, `function ${func.name || ''}() { [native code] }`)
+        }
+        plugin.func_set_native_Div = (func,name)=>{
+            set_native(func, myFunction_toString_symbol, `function ${name || ''}() { [native code] }`)
+        }
+    }
+    ).call(this);
+
+    plugin.RTCPeerConnection = RTCPeerConnection;
+
+    RTCPeerConnection = function RTCPeerConnection() {
+        this.myRTCPeerConnection = new plugin.RTCPeerConnection(arguments[0]);
+        console.log(this.myRTCPeerConnection)
+    }
+    ;
+    plugin.func_set_native(RTCPeerConnection)
+    plugin.rename(RTCPeerConnection.prototype, "RTCPeerConnection")
+    Object.setPrototypeOf(RTCPeerConnection.prototype, EventTarget.prototype)
+
+    plugin.defineProperty(RTCPeerConnection.prototype, 'localDescription', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['localDescription'].get, 'get localDescription');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['localDescription'].set, 'set localDescription');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'currentLocalDescription', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['currentLocalDescription'].get, 'get currentLocalDescription');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['currentLocalDescription'].set, 'set currentLocalDescription');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'pendingLocalDescription', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['pendingLocalDescription'].get, 'get pendingLocalDescription');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['pendingLocalDescription'].set, 'set pendingLocalDescription');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'remoteDescription', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['remoteDescription'].get, 'get remoteDescription');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['remoteDescription'].set, 'set remoteDescription');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'currentRemoteDescription', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['currentRemoteDescription'].get, 'get currentRemoteDescription');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['currentRemoteDescription'].set, 'set currentRemoteDescription');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'pendingRemoteDescription', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['pendingRemoteDescription'].get, 'get pendingRemoteDescription');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['pendingRemoteDescription'].set, 'set pendingRemoteDescription');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'signalingState', undefined, true, true, undefined, function() {
+        return 'stable';
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['signalingState'].get, 'get signalingState');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['signalingState'].set, 'set signalingState');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'iceGatheringState', undefined, true, true, undefined, function() {
+        return 'new';
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['iceGatheringState'].get, 'get iceGatheringState');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['iceGatheringState'].set, 'set iceGatheringState');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'iceConnectionState', undefined, true, true, undefined, function() {
+        return 'new';
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['iceConnectionState'].get, 'get iceConnectionState');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['iceConnectionState'].set, 'set iceConnectionState');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'connectionState', undefined, true, true, undefined, function() {
+        return 'new';
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['connectionState'].get, 'get connectionState');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['connectionState'].set, 'set connectionState');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'canTrickleIceCandidates', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['canTrickleIceCandidates'].get, 'get canTrickleIceCandidates');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['canTrickleIceCandidates'].set, 'set canTrickleIceCandidates');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'onnegotiationneeded', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onnegotiationneeded'].get, 'get onnegotiationneeded');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onnegotiationneeded'].set, 'set onnegotiationneeded');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'onicecandidate', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        window.onicecandidateFunc = value;
+        this.myRTCPeerConnection.onicecandidate = function() {
+            // window.testtest = arguments[0]
+            plugin.defineProperty(arguments[0].candidate, "candidate", window.myIsAddress);
+            // debugger
+            // arguments[0].candidate.candidate = window.myIsAddress;
+            window.onicecandidateFunc.apply(this, arguments);
+        }
+        ;
+        console.log("onicecandidate")
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onicecandidate'].get, 'get onicecandidate');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onicecandidate'].set, 'set onicecandidate');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'onsignalingstatechange', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onsignalingstatechange'].get, 'get onsignalingstatechange');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onsignalingstatechange'].set, 'set onsignalingstatechange');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'oniceconnectionstatechange', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['oniceconnectionstatechange'].get, 'get oniceconnectionstatechange');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['oniceconnectionstatechange'].set, 'set oniceconnectionstatechange');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'onconnectionstatechange', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onconnectionstatechange'].get, 'get onconnectionstatechange');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onconnectionstatechange'].set, 'set onconnectionstatechange');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'onicegatheringstatechange', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onicegatheringstatechange'].get, 'get onicegatheringstatechange');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onicegatheringstatechange'].set, 'set onicegatheringstatechange');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'onicecandidateerror', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onicecandidateerror'].get, 'get onicecandidateerror');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onicecandidateerror'].set, 'set onicecandidateerror');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'ontrack', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['ontrack'].get, 'get ontrack');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['ontrack'].set, 'set ontrack');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'sctp', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['sctp'].get, 'get sctp');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['sctp'].set, 'set sctp');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'ondatachannel', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['ondatachannel'].get, 'get ondatachannel');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['ondatachannel'].set, 'set ondatachannel');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'onaddstream', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onaddstream'].get, 'get onaddstream');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onaddstream'].set, 'set onaddstream');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'onremovestream', undefined, true, true, undefined, function() {
+        return (function() {
+            debugger ;
+        }
+        )();
+    }, function(value) {
+        debugger ;
+    });
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onremovestream'].get, 'get onremovestream');
+    plugin.func_set_native_Div(Object.getOwnPropertyDescriptors(RTCPeerConnection.prototype)['onremovestream'].set, 'set onremovestream');
+    plugin.defineProperty(RTCPeerConnection.prototype, 'addIceCandidate', function addIceCandidate() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.addIceCandidate);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'addStream', function addStream() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.addStream);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'addTrack', function addTrack() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.addTrack);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'addTransceiver', function addTransceiver() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.addTransceiver);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'close', function close() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.close);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'createAnswer', function createAnswer() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.createAnswer);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'createDTMFSender', function createDTMFSender() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.createDTMFSender);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'createDataChannel', function createDataChannel(v1, v2) {
+
+        // debugger;
+        let temp = this.myRTCPeerConnection.createDataChannel(v1, v2);
+        console.log("createDataChannel", temp);
+        return temp;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.createDataChannel);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'createOffer', function createOffer() {
+
+        // debugger;
+        let temp = this.myRTCPeerConnection.createOffer(arguments[0], arguments[1]);
+        //temp.then(function(){console.log("temp回调",arguments)});
+        console.log("createOffer", temp);
+        return temp;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.createOffer);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'getConfiguration', function getConfiguration() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.getConfiguration);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'getLocalStreams', function getLocalStreams() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.getLocalStreams);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'getReceivers', function getReceivers() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.getReceivers);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'getRemoteStreams', function getRemoteStreams() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.getRemoteStreams);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'getSenders', function getSenders() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.getSenders);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'getStats', function getStats() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.getStats);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'getTransceivers', function getTransceivers() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.getTransceivers);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'removeStream', function removeStream() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.removeStream);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'removeTrack', function removeTrack() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.removeTrack);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'restartIce', function restartIce() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.restartIce);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'setConfiguration', function setConfiguration() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.setConfiguration);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'setLocalDescription', function setLocalDescription() {
+
+        let temp = this.myRTCPeerConnection.setLocalDescription(arguments[0]);
+
+        console.log("setLocalDescription", arguments[0], temp);
+        return temp;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.setLocalDescription);
+    plugin.defineProperty(RTCPeerConnection.prototype, 'setRemoteDescription', function setRemoteDescription() {
+        debugger ;
+    }, true, true, true);
+    plugin.func_set_native(RTCPeerConnection.prototype.setRemoteDescription);
+
+    webkitRTCPeerConnection = RTCPeerConnection;
+}
+)();

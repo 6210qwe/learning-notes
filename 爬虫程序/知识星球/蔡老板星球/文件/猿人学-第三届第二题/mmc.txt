@@ -1,0 +1,40 @@
+function oM(jC, pD) {
+  var oM = new Uint8Array(256);
+  var mB = new Uint8Array(256);
+  var vD;
+  var eJ = 0;
+  var gL;
+  var gB = new Uint8Array(pD["length"]);
+  var tJ = 0;
+  var nQ = 0;
+  var uC;
+  for (vD = 0;vD < 256;vD++) {
+    oM[vD] = 255 - vD;
+    mB[vD] = jC[vD % jC["length"]];
+  }
+
+  for (gL = 0;gL < 256;gL++) {
+    eJ = eJ + oM[gL] + mB[gL] & 255;
+    [oM[gL], oM[eJ]] = [oM[eJ], oM[gL]];
+    
+  }
+ 
+  for ( nQ = 0;nQ < pD["length"];nQ++) {
+    tJ = tJ + 1 & 255;
+    eJ = eJ + oM[tJ] & 255;
+    [oM[tJ], oM[eJ]] = [oM[eJ], oM[tJ]];
+    uC = oM[oM[tJ] + oM[eJ] & 255];
+    gB[nQ] = pD[nQ] ^ uC;
+    
+  }
+  return gB;
+}
+var pD = Array["apply"](null, Array(16))["map"](function () {
+  return "0123456789abcdef0123456789abcdef0123456789abcdef6789abcdef789abcdef6789abcdef"["charAt"](Math["floor"](Math["random"]() * 62));
+})["join"]("");
+var lK = new TextEncoder()["encode"](pD);
+var uO = oM(lK, new TextEncoder()["encode"](navigator["userAgent"] + Date["now"]()));
+var mmc = Array["from"](uO)["map"](function (mU) {
+  return mU["toString"](16)["padStart"](2, "0");
+})["join"]("") + pD;
+console.log(mmc);

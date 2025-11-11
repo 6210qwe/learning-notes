@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hook Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>常用的HOOK代码</h1>
+
+    <h2>Hook Cookie</h2>
+    <pre>
+(function () {
+    let cookieCache = "";
+    Object.defineProperty(document, "cookie", {
+        set: function (val) {
+            console.log("Hook set cookie => ", val);
+            if (val.indexOf("spiderapi.cn") !== -1) {
+                debugger;
+            }
+            cookieCache = val;
+            return val;
+        },
+        get: function () {
+            return cookieCache;
+        }
+    });
+})();
+    </pre>
+
+    <h2>Hook Request Header</h2>
+    <pre>
+(function () {
+    let headerCache = window.XMLHttpRequest.prototype.setRequestHeader;
+    window.XMLHttpRequest.prototype.setRequestHeader = function (key, value) {
+        console.log("Hook set header %s => %s", key, value);
+        if (key === "需要HOOK的键") {
+            debugger;
+        }
+        return headerCache.apply(this, arguments);
+    };
+})();
+    </pre>
+
+    <h2>Hook Fetch</h2>
+    <pre>
+(function () {
+    let fetchCache = Object.getOwnPropertyDescriptor(window, "fetch");
+    Object.defineProperty(window, "fetch", {
+        value: function (url) {
+            console.log("Hook fetch url => ", url);
+            debugger;
+            return fetchCache.value.apply(this, arguments);
+        }
+    });
+})();
+    </pre>
+
+    <h2>Hook JSON.stringify</h2>
+    <pre>
+(function () {
+    let stringifyCache = JSON.stringify;
+    JSON.stringify = function (params) {
+        console.log("Hook JSON.stringify => ", params);
+        debugger;
+        return stringifyCache(params);
+    };
+})();
+    </pre>
+
+    <h2>Hook JSON.parse</h2>
+    <pre>
+(function () {
+    let parseCache = JSON.parse;
+    JSON.parse = function (params) {
+        console.log("Hook JSON.parse => ", params);
+        debugger;
+        return parseCache(params);
+    };
+})();
+    </pre>
+
+    <h2>Hook eval</h2>
+    <pre>
+(function () {
+    let evalCache = window.eval;
+    window.eval = function (string) {
+        console.log("Hook eval =>", string);
+        debugger;
+        return evalCache(string);
+    };
+    window.eval.toString = function () {
+        return evalCache.toString();
+    };
+})();
+    </pre>
+
+    <h2>Hook onbeforeunload</h2>
+    <pre>
+(function () {
+    window.onbeforeunload = function () {
+        console.log("Hook window.onbeforeunload.");
+        debugger;
+        return false;
+    };
+})();
+    </pre>
+
+    <h2>Hook setInterval</h2>
+    <pre>
+(function () {
+    let setIntervalCache = setInterval;
+    setInterval = function (func, delay) {
+        console.log("Hook setInterval func => %s, delay => %s", func, delay);
+        debugger;
+        return setIntervalCache(func, delay);
+    };
+})();
+    </pre>
+
+    <h2>Hook setTimeout</h2>
+    <pre>
+(function () {
+    let setTimeoutCache = setTimeout;
+    setTimeout = function (func, delay) {
+        console.log("Hook setTimeout func => %s, delay => %s", func, delay);
+        debugger;
+        return setTimeoutCache(func, delay);
+    };
+})();
+    </pre>
+
+    <h2>清除定时器</h2>
+    <pre>
+for (let i = 1; i < 99999; i++) window.clearInterval(i);
+    </pre>
+
+    <h2>Hook 固定随机变量</h2>
+    <pre>
+(function () {
+    Date.now = function now() { return 1661986251253 };
+    Date.parse = function () { return 1661986251253 };
+    Date.prototype.valueOf = function () { return 1661986251253 };
+    Date.prototype.getTime = function () { return 1661986251253 };
+    Date.prototype.toString = function () { return 1661986251253 };
+    Performance.prototype.now = function now(){ return Number('1661986251253'.slice(8))}
+
+    Math.random = function random() { return 0.08636862211354912 };
+    window.crypto.getRandomValues = function getRandomValues(array32, ...args){
+        return array32;
+    }
+})();
+    </pre>
+
+</body>
+</html>
