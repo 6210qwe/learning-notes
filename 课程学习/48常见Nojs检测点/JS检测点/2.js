@@ -1,5 +1,9 @@
 // 一、全局对象原型链差异
 // 1. 顶层对象的原型链终点
+// 一个是代码加密：ob混淆 + jsvmp混淆
+// 另一个是：环境检测点
+// 环境校验, 通过参数的方法, 参与到参数的生成中
+// 代码混淆, 增加调试难度
 const windowPrototypeChain = (() => {
   if (typeof window === 'undefined') return null;
   let chain = [];

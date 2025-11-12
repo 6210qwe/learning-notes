@@ -169,6 +169,7 @@ class CtbpspSpider:
             impersonate="Chrome101",
             proxies=self.proxies,
         )
+        print(response.text)
         content_type = response.headers.get("Content-Type", "")
 
         if "text/html" in content_type.lower():
